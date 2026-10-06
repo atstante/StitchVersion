@@ -1,821 +1,915 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- 1. АНАЛИЗ МЕТАДАННЫХ -->
-    <title>Снять и купить жилье в Азии: аренда для экспатов | KeyHaven</title>
-    <meta name="description" content="Планируете переезд? Поможем безопасно снять и купить жилье в Азии (Тайланд, Вьетнам, Бали). Долгосрочная аренда для экспатов без скрытых комиссий. Заходите!">
-    
-    <!-- Hreflang для мультиязычности (физические URL) -->
-    <link rel="alternate" hreflang="ru" href="https://keyhaven.asia/ru/" />
-    <link rel="alternate" hreflang="en" href="https://keyhaven.asia/en/" />
-    <link rel="alternate" hreflang="x-default" href="https://keyhaven.asia/en/" />
 
-    <!-- Подключение шрифта Nunito -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- JSON-LD Микроразметка Schema.org -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "RealEstateAgent",
-      "name": "KeyHaven Asia",
-      "image": "https://keyhaven.asia/logo.jpg",
-      "description": "Надежная платформа KeyHaven Asia: снять и купить жилье в Азии. От студий до вилл. "
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "123 Nguyen Van Linh",
-        "addressLocality": "Da Nang",
-        "addressCountry": "VN"
-      },
-      "telephone": "+84123456789",
-      "url": "https://keyhaven.asia/ru/"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "Можно ли снять жилье без посредников на долгосрок?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Да, наша платформа позволяет арендовать недвижимость без скрытых комиссий. "
-        }
-      }, {
-        "@type": "Question",
-        "name": "Помогаете ли вы с получением ВНЖ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "При покупке инвестиционной недвижимости в ряде стран (например, Индонезия, Тайланд) наши партнеры консультируют по вопросам получения виз и ВНЖ."
-        }
-      }]
-    }
-    </script>
-
-    <style>
-        /* =========================================
-           НАСТРОЙКИ ЦВЕТОВ И БАЗОВЫЕ СТИЛИ
-           ========================================= */
-        :root {
-            --primary: #086D67;      /* Цвет из нового логотипа */
-            --primary-dark: #06524d;
-            --accent: #F49F1B;       /* Желтый из нового логотипа */
-            --accent-hover: #d68912;
-            --bg-white: #FFFFFF;
-            --bg-light: #F7F9FC;
-            --text-dark: #1F2937;
-            --text-gray: #6B7280;
-            --border-color: #E5E7EB;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 12px 32px rgba(8, 109, 103, 0.15);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --radius-md: 12px;
-            --radius-lg: 20px;
-        }
-
-        html { scroll-behavior: smooth; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Nunito', sans-serif; }
-        body { background-color: var(--bg-white); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-
-        .container { width: 100%; max-width: 1600px; margin: 0 auto; padding: 0 20px; }
-        .section-title { font-size: 2.2rem; color: var(--text-dark); margin-bottom: 2rem; font-weight: 800; letter-spacing: -0.5px; }
-        .section-title::after { content: ""; display: block; width: 56px; height: 4px; border-radius: 999px; background: var(--accent); margin-top: 16px; }
-        .section-subtitle { font-size: 1.1rem; color: var(--text-gray); margin-bottom: 3rem; max-width: 800px; }
-
-        /* =========================================
-           ШАПКА И ПОИСК
-           ========================================= */
-        header { position: sticky; top: 0; background-color: var(--bg-white); box-shadow: var(--shadow-sm); z-index: 1000; padding: 12px 0; }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-        .logo { display: inline-flex; align-items: center; }
-        .logo svg { width: 242px; height: auto; display: block; }
-        
-        .header-center { display: none; flex: 1; align-items: center; justify-content: center; gap: 30px; }
-        
-        /* Компактная строка быстрого поиска */
-        .header-search {
-            display: flex; align-items: center; background: var(--bg-white);
-            border: 1px solid var(--border-color); border-radius: 100px;
-            box-shadow: var(--shadow-sm); padding: 5px; transition: var(--transition);
-            position: relative;
-        }
-        .header-search:hover { box-shadow: var(--shadow-md); }
-        .search-item {
-            border: none; background: transparent; padding: 9px 14px;
-            font-size: 0.95rem; font-weight: 600; color: var(--text-dark);
-            outline: none; cursor: pointer; font-family: inherit; white-space: nowrap;
-        }
-        .search-input { width: 120px; }
-        .search-input::placeholder { color: var(--text-dark); opacity: 1; }
-        .search-divider { width: 1px; height: 26px; background-color: var(--border-color); margin: 0 2px; flex-shrink: 0; }
-        .search-btn {
-            background-color: var(--accent); color: var(--bg-white); border: none;
-            border-radius: 100px; padding: 10px 26px; font-weight: 700; font-size: 0.95rem;
-            cursor: pointer; transition: var(--transition); margin-left: 4px;
-            font-family: inherit; white-space: nowrap;
-        }
-        .search-btn:hover { background-color: var(--accent-hover); }
-
-        /* Выпадающий список «Аренда / Покупка» */
-        .search-dropdown { position: relative; }
-        .search-select-toggle { display: flex; align-items: center; gap: 6px; }
-        .search-select-toggle .chevron { font-size: 0.6rem; transition: transform 0.2s ease; }
-        .search-dropdown.open .search-select-toggle .chevron { transform: rotate(180deg); }
-        .search-dropdown-menu {
-            position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%);
-            width: 140px; background: var(--bg-white); border: 1px solid var(--border-color);
-            border-radius: 2px; box-shadow: var(--shadow-md); overflow: hidden;
-            display: none; flex-direction: column; z-index: 1001;
-        }
-        .search-dropdown.open .search-dropdown-menu { display: flex; }
-        .search-dropdown-menu button {
-            border: none; background: var(--bg-white); padding: 13px 18px; text-align: left;
-            font-size: 1rem; font-weight: 600; color: var(--text-dark); cursor: pointer;
-            font-family: inherit; transition: background 0.2s ease; white-space: nowrap;
-        }
-        .search-dropdown-menu button:hover { background: var(--bg-light); }
-        .search-dropdown-menu button.active { background: var(--primary); color: var(--bg-white); }
-
-        .nav-links { display: flex; gap: 24px; font-weight: 700; font-size: 0.95rem; }
-        .nav-links a:hover { color: var(--primary); }
-        .header-controls { display: flex; align-items: center; gap: 12px; }
-        
-        /* Переключатель языков (выпадающая кнопка) */
-        .lang-wrapper { position: relative; }
-        .lang-toggle {
-            display: flex; align-items: center; gap: 10px; padding: 9px 16px;
-            background: var(--bg-white); border: 1px solid var(--border-color);
-            border-radius: var(--radius-md); font-weight: 700; font-size: 0.9rem;
-            color: var(--text-dark); cursor: pointer; font-family: inherit;
-            transition: var(--transition);
-        }
-        .lang-toggle:hover { border-color: var(--primary); }
-        .lang-toggle .chevron { font-size: 0.6rem; transition: transform 0.2s ease; }
-        .lang-wrapper.open .lang-toggle .chevron { transform: rotate(180deg); }
-        .lang-menu {
-            position: absolute; top: calc(100% + 8px); right: 0; width: 96px;
-            background: var(--bg-white); border: 1px solid var(--border-color);
-            border-radius: var(--radius-md); box-shadow: var(--shadow-md);
-            overflow: hidden; display: none; z-index: 1001;
-        }
-        .lang-wrapper.open .lang-menu { display: block; }
-        .lang-menu a { display: block; padding: 10px 16px; font-weight: 600; font-size: 0.9rem; color: var(--text-dark); }
-        .lang-menu a:hover { background: var(--bg-light); }
-        .lang-menu a.active { background: var(--primary); color: var(--bg-white); }
-
-        .burger-menu { display: block; background: none; border: none; font-size: 28px; color: var(--primary); cursor: pointer; }
-
-        /* =========================================
-           ГЛАВНЫЙ ЭКРАН (HERO)
-           ========================================= */
-        .hero {
-            background: linear-gradient(rgba(8, 109, 103, 0.7), rgba(8, 109, 103, 0.85)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            padding: 100px 20px; text-align: center; color: var(--bg-white); min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-        }
-        .hero h1 { font-size: 3.75rem; margin-bottom: 20px; font-weight: 800; line-height: 1.2; max-width: 1000px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .hero p { font-size: 1.25rem; margin-bottom: 36px; font-weight: 500; max-width: 820px; text-shadow: 0 1px 6px rgba(0,0,0,0.4); opacity: 0.95; }
-        .hero-btn { background-color: var(--accent); color: var(--bg-white); padding: 16px 44px; font-size: 1.1rem; font-weight: 800; border-radius: var(--radius-md); display: inline-block; box-shadow: 0 4px 15px rgba(244, 159, 27, 0.4); }
-        .hero-btn:hover { background-color: var(--accent-hover); transform: translateY(-3px); }
-
-        /* =========================================
-           БАЗОВЫЕ СЕКЦИИ И КАРТОЧКИ
-           ========================================= */
-        .section-padding { padding: 80px 0; }
-        .section-pb-sm { padding-bottom: 40px; }
-        .section-pt-sm { padding-top: 40px; }
-        .bg-gray { background-color: var(--bg-light); }
-
-        .cards-wrapper { width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px 0 40px 0; scrollbar-width: thin; scrollbar-color: var(--primary) var(--border-color); }
-        .cards-grid { display: flex; gap: 24px; }
-        .card { flex: 0 0 300px; scroll-snap-align: start; background: var(--bg-white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); transition: var(--transition); }
-        .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: transparent; }
-        .card-img-wrap { width: 100%; height: 220px; overflow: hidden; }
-        .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .card:hover .card-img { transform: scale(1.05); }
-        .card-content { padding: 20px; }
-        .card-location { color: var(--text-gray); font-size: 0.85rem; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; }
-        .card-title { font-size: 1.15rem; color: var(--text-dark); margin-bottom: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .card-details { display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid var(--border-color); padding-top: 15px; }
-        .card-price { font-size: 1.4rem; font-weight: 800; color: var(--primary); line-height: 1; }
-        .card-price span { font-size: 0.85rem; color: var(--text-gray); font-weight: 500; }
-        .card-features { display: flex; gap: 12px; color: var(--text-gray); font-size: 0.9rem; font-weight: 600; }
-
-        .btn-outline { display: block; width: max-content; margin: 0 auto; padding: 14px 36px; border: 2px solid var(--primary); color: var(--primary); border-radius: var(--radius-md); font-weight: 700; transition: var(--transition); text-align: center; }
-        .btn-outline:hover { background-color: var(--primary); color: var(--bg-white); }
-
-        /* =========================================
-           КАРУСЕЛЬ КАРТОЧЕК + ЗАГОЛОВКИ СЕКЦИЙ
-           ========================================= */
-        .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; }
-        .section-head .section-title { margin-bottom: 0; }
-        .cards-nav { display: flex; gap: 10px; }
-        .cards-nav button {
-            width: 46px; height: 46px; border-radius: 50%;
-            border: 1px solid var(--border-color); background: var(--bg-white);
-            color: var(--primary); font-size: 1.3rem; line-height: 1;
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
-            transition: var(--transition); font-family: inherit; padding: 0;
-        }
-        .cards-nav button:hover { background: var(--primary); color: var(--bg-white); border-color: var(--primary); transform: translateY(-2px); }
-        .cards-nav button:disabled { opacity: 0.35; cursor: default; transform: none; }
-        .cards-wrapper::-webkit-scrollbar { height: 8px; }
-        .cards-wrapper::-webkit-scrollbar-track { background: transparent; }
-        .cards-wrapper::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 999px; }
-        .cards-wrapper::-webkit-scrollbar-thumb:hover { background: var(--primary); }
-
-        /* =========================================
-           НОВЫЕ БЛОКИ: ПОДБЕРИ САМ, E-E-A-T, FAQ
-           ========================================= */
-        .quiz-banner {
-            background: var(--primary); border-radius: var(--radius-lg);
-            padding: 20px 40px; color: white; text-align: center; box-shadow: var(--shadow-md);
-        }
-        .quiz-banner h2 { font-size: 1.6rem; line-height: 1.25; margin-bottom: 6px; max-width: 820px; margin-inline: auto; color: white; }
-        .quiz-banner p { font-size: 1rem; line-height: 1.5; margin-bottom: 16px; opacity: 0.92; max-width: 820px; margin-inline: auto; }
-        .quiz-banner .hero-btn { padding: 11px 32px; font-size: 0.98rem; }
-        .quiz-section { padding: 24px 0; }
-        
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .feature-box { background: var(--bg-white); padding: 30px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); }
-        .feature-box h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.3rem; }
-
-        .faq-item { background: var(--bg-white); border: 1px solid var(--border-color); border-radius: var(--radius-md); margin-bottom: 15px; overflow: hidden; }
-        .faq-question { padding: 20px; font-weight: 700; font-size: 1.1rem; cursor: pointer; display: flex; justify-content: space-between; background: var(--bg-light); }
-        .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: all 0.3s ease; color: var(--text-gray); }
-        .faq-item.active .faq-answer { padding: 20px; max-height: 400px; border-top: 1px solid var(--border-color); }
-        .faq-item.active .faq-question::after { content: "−"; }
-        .faq-question::after { content: "+"; font-size: 1.5rem; line-height: 1; color: var(--primary); }
-
-      
-
-        /* =========================================
-           ПОДВАЛ (ФУТЕР)
-           ========================================= */
-        footer { background-color: var(--text-dark); color: #D1D5DB; padding: 60px 0 30px; font-size: 0.95rem; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-logo { display: inline-block; margin-left: 32px; }
-        .footer-logo svg { width: 150px; margin-bottom: 20px; opacity: 1; }
-        /* Тёмно-бирюзовый контур логотипа не читается на тёмном фоне — делаем его белым */
-        .footer-logo svg path[fill="#076D68"] { fill: #FFFFFF; }
-        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: var(--text-gray); font-size: 0.85rem; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .footer-bottom a:hover { color: var(--bg-white); }
-
-        /* =========================================
-           АДАПТИВНОСТЬ
-           ========================================= */
-        @media (min-width: 1024px) {
-            .burger-menu { display: none; }
-            .header-center { display: flex; }
-        }
-        @media (min-width: 1600px) {
-            /* На больших экранах карусель сохраняем, но карточки делаем крупнее */
-            .card { flex: 0 0 340px; }
-            .card-img-wrap { height: 250px; }
-        }
-        @media (max-width: 1023px) {
-            .mobile-menu-active .header-center { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg-white); padding: 20px; box-shadow: var(--shadow-md); border-top: 1px solid var(--border-color); max-height: calc(100vh - 72px); overflow-y: auto; }
-            .mobile-menu-active .nav-links { flex-direction: column; align-items: center; margin-top: 20px; }
-            .header-search { flex-direction: column; border-radius: var(--radius-md); padding: 15px; width: 100%; }
-            .search-divider { width: 100%; height: 1px; margin: 10px 0; }
-            .search-input, .search-item, .search-dropdown, .search-select-toggle { width: 100%; text-align: center; }
-            .search-select-toggle { justify-content: center; }
-            /* Выпадающий список в мобильном меню — в потоке, чтобы не перекрывать кнопку «Найти» */
-            .search-dropdown-menu { position: static; left: auto; top: auto; transform: none; width: 100%; margin-top: 10px; border-radius: var(--radius-md); }
-            .search-btn { width: 100%; border-radius: var(--radius-md); margin: 10px 0 0 0; }
-            .section-head { flex-direction: column; align-items: flex-start; gap: 16px; }
-            .footer-logo { margin-left: 0; }
-            /* Длинные названия объектов переносятся на две строки, а не обрезаются */
-            .card-title { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-            .hero h1 { font-size: 2.68rem; }
-            .quiz-banner { padding: 20px 18px; }
-        }
-        @media (max-width: 600px) {
-            .logo svg { width: 196px; }
-            .hero { padding: 64px 20px; min-height: auto; }
-            .hero h1 { font-size: 2.05rem; }
-            .hero p { font-size: 1.02rem; margin-bottom: 28px; }
-            .section-title { font-size: 1.65rem; }
-            .card { flex: 0 0 260px; }
-            .card-img-wrap { height: 190px; }
-            .card-content { padding: 18px; }
-            .cards-nav button { width: 40px; height: 40px; font-size: 1.1rem; }
-            .footer-logo { margin-left: 0; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- ШАПКА -->
-    <header id="header">
-        <div class="container header-inner">
-            <a href="../ru/" class="logo">
-                <!-- НОВЫЙ ЛОГОТИП HEADER (KeyHaven) -->
-                <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 2048 477" role="img">
-                    <title>KeyHaven Asia Logo</title>
-                    <path fill="#fff" d="M0 0h2048v477H0z"/>
-                    <path fill="#086d67" d="M323.298 59.4c19.305-2.989 48.305 4.275 65.55 13.484a117.4 117.4 0 0 1 57.214 69.647 119.4 119.4 0 0 1-8.974 90.359c-17.74 32.99-43.987 50.237-78.847 60.716l.098 15.548c5.032 5.322 12.658 8.007 16.387 14.356 7.465 12.714-14.545 15.629-16.576 24.026-1.768 7.308 13.922 11.885 16.246 17.769 6.279 15.904-13.117 14.203-16.173 25.724 2.103 14.556 35.903 15.338 4.444 36.859-7.86 7.588-25.978 31.361-37.191 30.128-21.462-2.36-28.526-19.945-28.598-39.256-.158-42.364-1.887-84.581-1.881-126.941-16.159-5.328-28.308-11.153-41.618-22.131a117.86 117.86 0 0 1-42.483-79.937 118.05 118.05 0 0 1 26.924-86.691c22.057-26.62 51.409-40.472 85.478-43.66"/>
-                    <path fill="#fff" d="m330.028 137.018 85.877 65.967c-15.193 37.402-41.358 60.741-82.906 63.086-42.029.141-74.226-23.815-87.338-63.513 27.089-21.541 56.632-45.029 84.367-65.54"/>
-                    <path fill="#f49f1b" d="M324.418 171.201c12.973-1.221 25.051 3.742 31.486 15.516a28.02 28.02 0 0 1 2.335 21.773c-2.96 9.725-9.115 14.179-17.428 18.615.057 9.924 1.642 18.717-5.021 25.679-21.019 2.476-17.416-9.536-16.93-25.547-7.81-3.939-13.885-8.923-17.051-17.36a27.64 27.64 0 0 1 .905-21.154c4.702-10.2 11.957-13.946 21.704-17.522"/>
-                    <path fill="#fff" d="M322.574 90.32q2.22-.177 4.443-.295a87.5 87.5 0 0 1 63.313 22.531c18.759 17.002 27.97 37.977 29.172 63.02-6.455-4.211-16.499-12.404-22.916-17.304-.181-10.338 4.675-31.541-10.251-31.778-16.671-.265-11.369 8.847-14.392 11.718-6.168-3.402-21.998-16.606-28.325-21.677-5.646-4.729-12.162-11.667-19.508-6.218-27.884 20.683-54.297 44.082-82.115 64.857 4.581-46.638 33.864-78.317 80.579-84.853"/>
-                    <path fill="#086d67" d="M522.955 154.089a1273 1273 0 0 1 20.588-.503c30.644-.206 19.228 20.346 21.198 42.364.301 3.365-.008 7.566-.007 11.037 9.952-11.651 36.662-45.077 49.763-52.033 3.348-1.778 41.571-1.907 46.402.655 2.58 3.091 1.957 1.69 2.54 5.657-1.631 5.649-45.586 50.748-53.237 58.952 12.431 18.018 26.518 36.564 39.56 54.289 4.759 6.849 13.174 14.947 15.086 22.912-3.011 11.478-35.039 6.254-44.446 6.512-9.463.259-16.388-11.996-21.406-19.219-7.526-10.833-15.09-22.157-23.091-32.963l-11.169 10.367c-.515 26.59 8.38 45.838-25.597 42.565-7.495-.722-14.867 1.681-21.159-4.8-.807-3.15-1.646-7.558-1.693-10.853-.587-41.631-.389-83.362-.056-124.997.038-4.749 3.335-7.22 6.724-9.942m258.291 34.259c8.917-.102 23.569-1.966 31.566 1.574 8.002 3.543 23.363 51.472 27.449 61.643 6.9-16.062 11.241-33.159 17.782-49.351 1.902-4.71 4.386-10.674 9.399-12.731 5.371-2.205 27.909-2.033 33.106.174 1.976.84 4.429 2.751 5.179 4.812 2.914 8.014-34.394 92.119-40.268 106.285-8.691 21.034-15.977 43.108-40.377 49.469-21.505 5.097-60.113 7.1-43.293-27.389 7.136-14.632 15.417-5.036 27.562-8.047 4.846-1.202 7.86-7.284 6.147-11.788-12.826-33.728-28.779-66.528-41.999-100.154-3.25-8.276.197-12.005 7.747-14.497"/>
-                    <path fill="#086d67" d="M707.449 187.186q5.37-.35 10.749-.484a60.8 60.8 0 0 1 42.95 16.88c9.419 9.171 27.719 41.48 11.388 52.1-3.138 2.041-24.702 1.415-30.479 1.385a3998 3998 0 0 0-42.695.015c15.662 28.112 30.367 11.859 50.785 6.433 3.781-1.005 12.208 8.196 15.195 11.119 22.66 19.823-44.404 45.547-82.091 21.485a58.04 58.04 0 0 1-25.816-36.946c-8.062-36.944 14.588-64.317 50.014-71.987"/>
-                    <path fill="#fff" d="M713.268 218.079c8.763-.708 16.775 1.454 22.28 8.878.574 3.123.781 1.927-1.024 4.782-3.269 2.286-8.63 1.574-12.774 1.458-6.086.165-19.043 2.077-21.495-4.658 1.802-4.486 8.838-8.466 13.013-10.46"/>
-                    <path fill="#086d67" d="M1015.75 214.097c.14-11.815-2.5-45.68.69-54.893 1.05-3.022 2.99-5.959 5.97-7.33 3.87-1.778 11.01-1.529 14.93-.028 2.39.919 4.5 2.636 5.51 5.04 1.63 3.882 3.05 135.718.33 141.829-1.56 3.513-4.85 4.964-8.21 6.288-1.16.028-2.33.042-3.5.042-14.55-.025-15.97-5.882-16.01-19.446-.04-15.183.17-30.4.31-45.583l-71.575.009c.048 17.566.117 35.397-.035 52.983-.029 3.272-1.839 7.265-4.35 9.416-3.59 2.89-9.173 2.734-13.434 2.366-5.795-.501-10.431-4.524-10.635-10.545-.916-27.081-.141-54.284-.276-81.395-.086-17.363-.318-34.817.066-52.159.099-4.349 3.891-7.216 7.107-9.605a226 226 0 0 1 4.429-.22c19.604-.756 17.002 11.431 17.321 27.117.245 11.993-.123 24.218-.205 36.23 23.688-.313 47.839-.1 71.567-.116m296.59-25.78.87-.045c32.69-1.58 57.63 19.126 60.73 52.215.65 7.026-2.76 13.906-10.53 14.416-25.12 1.647-50.52-.431-75.74.604 7.36 25.007 25.02 35.08 49.33 22.373 7.24-3.781 9.52-8.022 18.06-6.761 6.04 4.122 14.27 13.087 7.32 19.191-57.69 50.633-131.97-16.677-90.56-79.751 8.77-13.346 25.47-20.081 40.52-22.242"/>
-                    <path fill="#fff" d="M1313.68 211.209c18.34-.989 26.79 6.761 32.17 23.493l-24.74-.008c-10.69.111-21.67-.048-32.38-.079 3.97-14.023 11.12-20.001 24.95-23.406"/>
-                    <path fill="#086d67" d="M1099.11 188.348c17.33-1.813 36.59 3.99 47.18 18.399 13.08 17.806 8.55 40.569 9.01 61.191-.79 6.812 2.22 21.707.01 27.735-7.77 21.227-20.27 8.213-26.96-1.825-20.46 17.524-45.88 17.062-65.46-1.459-4.81-6.521-8.6-14.891-7.94-22.895 2.93-35.731 39.82-37.262 67.23-34.512 2.73.273 4.7-.388 6.52-2.127.57-5.262-4.94-13.926-8.94-16.814-11.89-8.734-28.14-2.419-40.22 3.18-11.96 5.543-22.91-7.235-15.44-16.974 6.84-8.919 24.1-12.538 35.01-13.899"/>
-                    <path fill="#fff" d="M1101.96 253.361c8.65-.57 17.95.563 26.46 2.087.61 17.036-2.96 22.797-19.35 28.449-.63.131-1.26.248-1.9.35-26.52 4.306-37.81-26.262-5.21-30.886"/>
-                    <path fill="#086d67" d="M1436.93 188.295c9.9-.375 19.28.717 28.24 5.282 11.2 5.705 19.32 16.157 23.1 28.033 3.2 10.029 5.16 72.686 1.19 80.163-1.01 1.894-2.8 3.147-4.83 3.758-4.17 1.257-12.6 1.548-16.49-.693-10.43-6.006-2.38-58.636-7.09-73.937-1.91-6.209-5.34-12.462-11.29-15.566-7.41-3.866-16.57-2.477-24.18-.05-27.32 14.599-7.61 62.043-17.06 85.873-4 10.082-24.89 5.676-25.27-2.264-.9-18.743-.62-30.984-.56-51.297.04-10.999-2.45-42.052.36-54.134 9.41-8.397 22.22-6.774 25.33 9.621 8.97-9.509 16.04-12.72 28.55-14.789m-227.51 79.987c8.58-20.562 15.75-42.12 24.05-62.827 1.6-3.989 5.04-13.967 9.55-15.094 34.28-8.58 18.22 18.989 11.37 35.383-5.18 12.212-27.02 72.923-34.3 78.031-4.09 2.865-10.08 3.415-14.87 2.531-3.85-.711-7.53-2.394-9.77-5.721-8.54-12.637-22.36-51.165-28.96-66.832-4.3-10.219-10.07-20.517-13.9-30.774-.82-2.197-1.42-4.712-.89-7.05.76-3.427 3.26-4.942 6-6.75 7.85-.391 16.83-1.933 21.1 6.142 4.68 8.86 8.07 18.243 11.85 27.519z"/>
-                    <path fill="#f49f1b" d="m1842.52 209.593 11.58.185 28.36 60.787-12.03.122c-4.58-11.327-3.8-14.452-16.68-14.148-7.17.102-14.35.122-21.52.06l-6.55 14.088c-3.32.129-8.09-.201-11.52-.336 8.35-19.642 19.4-40.797 28.36-60.758"/>
-                    <path fill="#fff" d="M1848.24 222.783c1.94 2.44 9.52 19.801 10.65 23.189-2.14 1.398-5.12.984-8.04 1.064l-13.56-.267z"/>
-                    <path fill="#f49f1b" d="M1623.29 209.575c13.18-.391 11.57.711 17.13 12.657 7.49 16.107 15.18 32.203 22.18 48.531-24.21 1.336-6.22-13.548-26.48-14.086-7.68.065-15.57-.108-23.27-.189l-6.37 14.097-11.74-.102c9.29-20.41 18.81-40.714 28.55-60.908"/>
-                    <path fill="#fff" d="M1628.19 223.514c2.84 1.901 9.98 19.068 10.66 22.896-1.29.895-8.99.629-11.1.637l-10.2-.123z"/>
-                    <path fill="#f49f1b" d="M1707.36 209.246c12.79-1.014 17.41.146 28.71 5.256-.9 2.32-3.06 6.381-4.24 8.763-7.67-3.335-28.27-10.958-29.65 3.605 3.26 10.441 34.89 7.898 36.22 23.705 1.25 14.853-10.45 19.319-22.64 21.153-11.69-.358-17.36-2.506-26.99-8.157 1.21-2.628 3.5-6.091 5.08-8.643 7.83 5.197 27.92 11.148 34.17 2.252.77-4.02-4.71-9.035-8.19-10.402-10.35-4.059-27.83-3.553-28.9-17.949-.9-12.011 6.25-16.334 16.43-19.583m-167.54-32.754c.97.409 2.77 1.565 3.76 2.163 1.47 2.88 1.18 6.923 1.17 10.144-.03 35.855.32 71.746-.21 107.591-.03 1.82-.98 3.8-2.09 5.207l-3.44-1.477c-2.11-3.345-1.92-5.686-1.9-9.642.15-36.354-.51-72.789.46-109.119.04-1.656 1.19-3.623 2.25-4.867m232.45 33.205c4.13-.112 5.83-.215 9.85.635 2.47 3.267 1.28 52.594 1.06 60.437-4.42.194-7.39.811-10.6-1.809-1.31-7.401-.38-49.056-.31-59.263"/>
-                </svg>
+<html lang="ru"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"tertiary-fixed":"#afefe7","accent-hover":"#D68912","background":"#f8f9ff","text-subtle":"#D1D5DB","on-primary-fixed":"#00201e","primary-container":"#086d67","on-tertiary-fixed-variant":"#02504b","tertiary-container":"#2b6b66","on-tertiary":"#ffffff","surface":"#f8f9ff","primary":"#00534e","surface-container-highest":"#d9e3f6","border-light":"#E2E8F0","surface-container-lowest":"#ffffff","on-primary-container":"#9aece3","surface-dim":"#d0dbed","surface-container-low":"#eff4ff","surface-container":"#e6eeff","border-muted":"#E5E7EB","inverse-on-surface":"#eaf1ff","primary-fixed-dim":"#84d5cd","secondary-fixed-dim":"#ffb95f","on-background":"#121c2a","primary-fixed":"#a0f1e9","on-error":"#ffffff","on-secondary-fixed-variant":"#653e00","secondary-fixed":"#ffddb8","on-secondary-fixed":"#2a1700","tertiary":"#07534e","on-error-container":"#93000a","surface-container-high":"#dee9fc","surface-variant":"#d9e3f6","text-muted":"#6B7280","on-surface":"#121c2a","surface-bright":"#f8f9ff","on-secondary":"#ffffff","inverse-surface":"#27313f","on-tertiary-container":"#a9e9e2","surface-mist":"#F7F9FC","outline":"#6e7977","inverse-primary":"#84d5cd","error":"#ba1a1a","on-primary-fixed-variant":"#00504b","on-tertiary-fixed":"#00201e","on-surface-variant":"#3e4947","surface-tint":"#006a64","tertiary-fixed-dim":"#93d2cb","secondary-container":"#fda624","on-primary":"#ffffff","on-secondary-container":"#684000","outline-variant":"#bec9c7","error-container":"#ffdad6","surface-slate":"#F8FAFC","secondary":"#855300"},"borderRadius":{"DEFAULT":"1rem","lg":"2rem","xl":"3rem","full":"9999px"},"spacing":{"space-xl":"1.5rem","space-2xl":"2.5rem","space-md":"1rem","margin-desktop":"2.5rem","margin-tablet":"2rem","gutter-desktop":"1.5rem","space-3xl":"5rem","margin":"1.25rem","space-xs":"0.25rem","space-lg":"1.25rem","space-sm":"0.5rem","gutter":"1.25rem"},"fontFamily":{"display-hero-mobile":["Nunito Sans"],"body-base":["Nunito Sans"],"headline-lg-mobile":["Nunito Sans"],"headline-sm":["Nunito Sans"],"label-nav":["Nunito Sans"],"body-bold":["Nunito Sans"],"title-card":["Nunito Sans"],"label-eyebrow":["Nunito Sans"],"headline-md":["Nunito Sans"],"price-lg":["Nunito Sans"],"meta-sm":["Nunito Sans"],"headline-lg":["Nunito Sans"],"display-hero":["Nunito Sans"],"body-lead":["Nunito Sans"]},"fontSize":{"display-hero-mobile":["33px",{"lineHeight":"1.25","fontWeight":"800"}],"body-base":["16px",{"lineHeight":"1.6","fontWeight":"400"}],"headline-lg-mobile":["26px",{"lineHeight":"1.3","fontWeight":"800"}],"headline-sm":["21px",{"lineHeight":"1.35","fontWeight":"700"}],"label-nav":["15px",{"lineHeight":"1.4","fontWeight":"700"}],"body-bold":["16px",{"lineHeight":"1.6","fontWeight":"700"}],"title-card":["18px",{"lineHeight":"1.4","fontWeight":"700"}],"label-eyebrow":["13px",{"lineHeight":"1.4","letterSpacing":"0.06em","fontWeight":"700"}],"headline-md":["25px",{"lineHeight":"1.3","fontWeight":"700"}],"price-lg":["22px",{"lineHeight":"1.0","fontWeight":"800"}],"meta-sm":["13px",{"lineHeight":"1.4","fontWeight":"500"}],"headline-lg":["35px",{"lineHeight":"1.3","letterSpacing":"-0.5px","fontWeight":"800"}],"display-hero":["60px",{"lineHeight":"1.2","fontWeight":"800"}],"body-lead":["20px",{"lineHeight":"1.6","fontWeight":"500"}]}}}}</script></head><body class="bg-surface font-body-base text-body-base text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-[1600px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-xl"><a class="flex items-center gap-space-xs text-primary transition-opacity hover:opacity-90" data-path="glavnaya" href="#"><div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary"><span class="material-symbols-outlined text-[24px]">real_estate_agent</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-primary leading-none">KeyHaven</span><span class="font-label-eyebrow text-label-eyebrow text-secondary uppercase tracking-wider">Asia</span></div></a><div class="hidden xl:flex items-center bg-surface-mist rounded-full p-1 pl-space-lg shadow-[0_2px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-outline text-[18px]">location_on</span><input class="bg-transparent border-0 text-on-surface font-body-base text-body-base placeholder:text-outline-variant focus:outline-none w-48" placeholder="Таиланд, Бали, Дананг..." type="text"/></div><div class="h-6 w-[1px] bg-outline-variant mx-space-sm"></div><div class="relative flex items-center"><select class="appearance-none bg-transparent border-0 font-label-nav text-label-nav text-on-surface-variant pr-space-xl focus:outline-none cursor-pointer"><option>Аренда</option><option>Покупка</option></select><span class="material-symbols-outlined pointer-events-none absolute right-1 text-on-surface-variant text-[18px]">expand_more</span></div><button class="ml-space-sm bg-secondary-container hover:bg-accent-hover text-on-secondary-container transition-all flex items-center gap-space-xs font-label-nav text-label-nav px-space-lg py-space-sm rounded-full"><span class="material-symbols-outlined text-[16px]">search</span><span>Найти</span></button></div></div><div class="flex items-center gap-space-xl"><nav class="hidden lg:flex items-center gap-space-xl" data-active-classes="text-primary font-bold"><a class="font-label-nav text-label-nav text-on-surface-variant hover:text-on-surface transition-colors" data-path="arenda" href="#">Аренда</a><a class="font-label-nav text-label-nav text-on-surface-variant hover:text-on-surface transition-colors" data-path="pokupka" href="#">Покупка</a><a class="font-label-nav text-label-nav text-on-surface-variant hover:text-on-surface transition-colors" data-path="stan-te-khozyainom" href="#">Станьте хозяином</a></nav><div class="flex items-center gap-space-md"><div class="flex items-center bg-surface-container-low rounded-full p-1 font-label-nav text-label-nav text-on-surface-variant"><button class="px-space-sm py-0.5 rounded-full bg-surface-container-lowest text-primary font-bold shadow-[0_1px_4px_rgba(0,0,0,0.05)]">RU</button><button class="px-space-sm py-0.5 rounded-full hover:text-on-surface transition-colors">EN</button></div><a class="transition-transform hover:scale-105" data-path="profil" href="#"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></a></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-20rem)]"><div class="flex flex-col w-full">
+<!-- HERO SECTION -->
+<section class="relative w-full overflow-hidden bg-primary py-space-3xl -mt-20 pt-36">
+<!-- Atmospheric lighting & background image scrim -->
+<div class="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-30" data-alt="Modern tropical luxury villa with an infinity edge swimming pool overlooking lush green palm jungle and distant azure sea in Southeast Asia, warm golden hour ambient lighting, modern architectural lines, resort paradise atmosphere" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDjncZMVjpPdgcK3qpXjZ6Ng2zqorfn9n2TYBLosisXOMLvIK0FbgIJWWMNU5ZuM9iGqQLJHBiLywD-EVKT5-GBKT3746jLwk5xSM4nafNFE6hyhmEZ1n075SAIv7I6k4Iuzov_CxakUjv3UI9jHEeidg3tRG7N7bw08pYnWpsAZ0wMK6niSG0hoZIaHZPq_KxKI4pWgL7x2CDoocxZ43h2OqrOdo_n5cgi9mczdxKTmJjKDa1dw30')"></div>
+<div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-secondary-container/20 blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -left-20 w-80 h-80 rounded-full bg-tertiary-fixed/15 blur-2xl pointer-events-none"></div>
+<div class="relative max-w-[1600px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex flex-col items-center text-center">
+<!-- Eyebrow Pill -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container-lowest/15 backdrop-blur-md text-tertiary-fixed font-label-eyebrow text-label-eyebrow uppercase tracking-wider mb-space-lg shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>Платформа безопасной релокации и недвижимости #1 в Азии</span>
+</div>
+<!-- Main Headline -->
+<h1 class="font-display-hero text-display-hero-mobile md:text-display-hero text-on-primary max-w-4xl tracking-tight mb-space-lg">
+        Ваш новый дом в Азии ждет
+      </h1>
+<!-- Positioning Subtext -->
+<p class="font-body-lead text-body-base md:text-body-lead text-on-primary/90 max-w-3xl mb-space-2xl leading-relaxed">
+        Планируете переезд или инвестиции? Надежная платформа для долгосрочной аренды и покупки проверенной недвижимости в Таиланде, Вьетнаме и на Бали. Пхукет, Дананг, Хошимин, Самуи и Убуд — прозрачный договор, фиксированный депозит и отсутствие скрытых комиссий.
+      </p>
+<!-- Dynamic Search & Filter Capsule Bar -->
+<div class="w-full max-w-4xl bg-surface-container-lowest rounded-2xl shadow-xl p-space-sm md:p-space-md text-left transition-all">
+<!-- Main Quick Bar -->
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center gap-space-sm">
+<!-- City / Location Field -->
+<div class="flex-1 flex items-center gap-space-sm px-space-md py-space-sm rounded-xl bg-surface-mist">
+<span class="material-symbols-outlined text-primary text-[22px]">location_on</span>
+<div class="flex flex-col w-full">
+<span class="font-meta-sm text-meta-sm text-text-muted">Направление</span>
+<input class="bg-transparent border-0 font-body-bold text-body-bold text-on-surface placeholder:text-outline-variant focus:outline-none w-full" id="search-location" placeholder="Дананг, Пхукет, Хошимин, Бали..." type="text"/>
+</div>
+</div>
+<!-- Deal Type Switcher -->
+<div class="flex items-center gap-space-xs px-space-md py-space-sm rounded-xl bg-surface-mist">
+<span class="material-symbols-outlined text-secondary text-[22px]">real_estate_agent</span>
+<div class="flex flex-col">
+<span class="font-meta-sm text-meta-sm text-text-muted">Тип сделки</span>
+<select class="bg-transparent font-body-bold text-body-bold text-on-surface focus:outline-none cursor-pointer pr-space-md" id="deal-type-select">
+<option value="rent">Долгосрок</option>
+<option value="buy">Покупка в собственность</option>
+</select>
+</div>
+</div>
+<!-- Extended Filter Toggle Button -->
+<button class="flex items-center justify-center gap-space-xs px-space-lg py-space-md rounded-xl bg-surface-container hover:bg-surface-container-high text-primary font-label-nav text-label-nav transition-all" id="toggle-filter-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+<span>Фильтры</span>
+<span class="material-symbols-outlined text-[18px] transition-transform" id="filter-chevron">expand_more</span>
+</button>
+<!-- Search CTA -->
+<button class="flex items-center justify-center gap-space-xs px-space-2xl py-space-md rounded-xl bg-secondary-container hover:bg-accent-hover text-on-secondary-container font-headline-sm text-label-nav shadow-lg transition-all transform hover:-translate-y-0.5" id="submit-search-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">search</span>
+<span>Найти жилье</span>
+</button>
+</div>
+<!-- Collapsible Advanced Drawer -->
+<div class="hidden pt-space-lg mt-space-md border-t border-border-muted/30" id="advanced-filters">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg mb-space-lg">
+<!-- Price Range -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-meta-sm text-meta-sm font-bold text-on-surface">Бюджет в месяц:</span>
+<span class="font-meta-sm text-meta-sm text-primary font-extrabold" id="price-val">$300 - $3,500</span>
+</div>
+<input class="w-full accent-primary cursor-pointer h-2 bg-surface-container rounded-lg" id="price-range" max="5000" min="300" step="50" type="range" value="3500"/>
+<div class="flex justify-between text-meta-sm font-meta-sm text-text-muted">
+<span>$300</span>
+<span>$2,500</span>
+<span>$5,000+</span>
+</div>
+</div>
+<!-- Property Category -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-meta-sm text-meta-sm font-bold text-on-surface">Формат жилья</label>
+<select class="w-full p-2.5 rounded-xl bg-surface-mist font-body-base text-body-base text-on-surface focus:outline-none">
+<option>Все типы</option>
+<option>Студия для номада</option>
+<option>Кондоминиум / Апартаменты</option>
+<option>Уединенная вилла с бассейном</option>
+<option>Пентхаус с панорамным видом</option>
+<option>Таунхаус в комьюнити</option>
+</select>
+</div>
+<!-- Bedrooms Count -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-meta-sm text-meta-sm font-bold text-on-surface">Количество спален</label>
+<div class="flex items-center gap-1.5 bg-surface-mist p-1 rounded-xl">
+<button class="flex-1 py-1.5 text-center font-meta-sm text-meta-sm rounded-lg bg-surface-container-lowest shadow-sm font-bold text-primary" type="button">Любое</button>
+<button class="flex-1 py-1.5 text-center font-meta-sm text-meta-sm rounded-lg hover:bg-surface-container-lowest text-text-muted transition-colors" type="button">1</button>
+<button class="flex-1 py-1.5 text-center font-meta-sm text-meta-sm rounded-lg hover:bg-surface-container-lowest text-text-muted transition-colors" type="button">2</button>
+<button class="flex-1 py-1.5 text-center font-meta-sm text-meta-sm rounded-lg hover:bg-surface-container-lowest text-text-muted transition-colors" type="button">3+</button>
+</div>
+</div>
+<!-- Distance to Sea -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-meta-sm text-meta-sm font-bold text-on-surface">До моря / пляжа</label>
+<select class="w-full p-2.5 rounded-xl bg-surface-mist font-body-base text-body-base text-on-surface focus:outline-none">
+<option>Не имеет значения</option>
+<option>1-я береговая линия (&lt; 200 м)</option>
+<option>Пешая доступность (до 10 мин)</option>
+<option>До 2-3 км (на байке 5 мин)</option>
+</select>
+</div>
+</div>
+<!-- Nomad & Expat Special Badges (Clickable Chips) -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+<span class="font-meta-sm text-meta-sm font-bold text-text-muted mr-space-xs">Для комфорта экспата:</span>
+<button class="filter-chip active flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-primary text-on-primary font-meta-sm text-meta-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">wifi</span>
+<span>Высокоскоростной Wi-Fi (300+ Мбит)</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-mist hover:bg-surface-container text-on-surface font-meta-sm text-meta-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">pool</span>
+<span>Приватный бассейн</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-mist hover:bg-surface-container text-on-surface font-meta-sm text-meta-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">desk</span>
+<span>Эргономичное рабочее место</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-mist hover:bg-surface-container text-on-surface font-meta-sm text-meta-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">pets</span>
+<span>Pet-Friendly</span>
+</button>
+<button class="filter-chip flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-surface-mist hover:bg-surface-container text-on-surface font-meta-sm text-meta-sm transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span>Без наценки за электричество</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Regional Jump Links -->
+<div class="flex flex-wrap items-center justify-center gap-space-sm mt-space-xl text-on-primary/80 font-meta-sm text-meta-sm">
+<span class="text-tertiary-fixed font-bold uppercase tracking-wider">Популярные направления:</span>
+<a class="hover:text-secondary-container transition-colors bg-surface-container-lowest/10 px-3 py-1 rounded-full" href="#rent">Пхукет (Таиланд)</a>
+<a class="hover:text-secondary-container transition-colors bg-surface-container-lowest/10 px-3 py-1 rounded-full" href="#rent">Дананг (Вьетнам)</a>
+<a class="hover:text-secondary-container transition-colors bg-surface-container-lowest/10 px-3 py-1 rounded-full" href="#rent">Убуд и Чангу (Бали)</a>
+<a class="hover:text-secondary-container transition-colors bg-surface-container-lowest/10 px-3 py-1 rounded-full" href="#rent">Хошимин (District 2)</a>
+<a class="hover:text-secondary-container transition-colors bg-surface-container-lowest/10 px-3 py-1 rounded-full" href="#rent">Остров Самуи</a>
+</div>
+</div>
+</section>
+<!-- TRUST STATS RIBBON -->
+<section class="w-full bg-surface-container-lowest py-space-xl shadow-sm">
+<div class="max-w-[1600px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter-desktop">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[26px]">gavel</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-primary font-extrabold leading-none">100%</div>
+<div class="font-meta-sm text-meta-sm text-text-muted mt-1">Юридический аудит контрактов</div>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[26px]">lock_reset</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-primary font-extrabold leading-none">0 скрытых</div>
+<div class="font-meta-sm text-meta-sm text-text-muted mt-1">Фиксированный депозит</div>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[26px]">support_agent</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-primary font-extrabold leading-none">RU / EN</div>
+<div class="font-meta-sm text-meta-sm text-text-muted mt-1">Поддержка на месте и визы</div>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[26px]">wifi</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-primary font-extrabold leading-none">Verified</div>
+<div class="font-meta-sm text-meta-sm text-text-muted mt-1">Тест скорости интернета</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 1: LONG-TERM RENTAL CAROUSEL -->
+<section class="w-full py-space-3xl bg-surface" id="rent">
+<div class="max-w-[1600px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<!-- Section Header with Title & Navigation Controls -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-2xl">
+<div>
+<div class="flex items-center gap-space-xs text-secondary font-label-eyebrow text-label-eyebrow uppercase tracking-wider mb-2">
+<span class="material-symbols-outlined text-[16px]">calendar_month</span>
+<span>Для цифровых кочевников и экспатов</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tight">
+            Долгосрочная аренда недвижимости
+          </h2>
+<div class="w-16 h-1 rounded-full bg-secondary-container mt-3"></div>
+<p class="font-body-base text-body-base text-text-muted mt-3 max-w-2xl">
+            Таиланд, Вьетнам, Индонезия. Все объекты лично инспектируются нашими агентами: честный депозит, счета по государственным счетчикам и надежный интернет.
+          </p>
+</div>
+<div class="flex items-center gap-space-sm self-start md:self-auto">
+<button aria-label="Назад" class="w-12 h-12 rounded-full bg-surface-container-lowest hover:bg-primary hover:text-on-primary text-primary transition-all flex items-center justify-center shadow-md active:scale-95" id="rent-prev" type="button">
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+</button>
+<button aria-label="Вперед" class="w-12 h-12 rounded-full bg-surface-container-lowest hover:bg-primary hover:text-on-primary text-primary transition-all flex items-center justify-center shadow-md active:scale-95" id="rent-next" type="button">
+<span class="material-symbols-outlined text-[22px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Horizontal Snap Carousel Track -->
+<div class="flex gap-space-xl overflow-x-auto pb-space-xl pt-space-xs scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none]" id="rent-carousel">
+<!-- Card 1: Da Nang Studio -->
+<article class="flex-none w-[280px] sm:w-[320px] lg:w-[350px] snap-start bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col">
+<div class="relative w-full h-[220px] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Sunlit minimalist studio apartment interior in Da Nang Vietnam overlooking My Khe beach, light wooden finishes, modern workspace desk with ergonomic chair, ocean view balcony" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxrEyIMgywDTPGIiBsMbrVsCUg5pf33IYagkSLsxMPr-_qhJOrBPqei26Pa2_9hPqR_XBHdOKAgqEiUqjBNaWa88k81P1--XmVn-vaTELeHkam4NBN0264ghqD3K_AxbLOrFs6AhlPXWtPm7OCUwCQ48g93IWeiyUbnBJDVBFBGrDMNvufucTcSwMDzFXPpLVTbv5yb5Tg86JYqwczUzbT8uJGoVYqyLAblC_kD57n8y8GYonNXkA"/>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-meta-sm text-meta-sm text-primary font-bold shadow-sm">
+              Дананг, Вьетнам
+            </span>
+<span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-primary text-on-primary font-meta-sm text-meta-sm font-bold shadow-sm">
+              Пешком к пляжу
+            </span>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between">
+<div>
+<div class="font-meta-sm text-meta-sm text-text-muted uppercase tracking-wider mb-1">Студия у моря</div>
+<h3 class="font-title-card text-title-card text-on-surface line-clamp-2 group-hover:text-primary transition-colors">
+                Современная студия у моря My Khe
+              </h3>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-border-muted/40 flex items-end justify-between">
+<div class="flex items-center gap-space-sm text-text-muted font-meta-sm text-meta-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bed</span> 1 сп.</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">square_foot</span> 45 м²</span>
+</div>
+<div class="text-right">
+<div class="font-price-lg text-price-lg text-primary font-extrabold leading-none">$450</div>
+<span class="font-meta-sm text-meta-sm text-text-muted">/ месяц</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 2: Phuket Condo -->
+<article class="flex-none w-[280px] sm:w-[320px] lg:w-[350px] snap-start bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col">
+<div class="relative w-full h-[220px] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Elegant condominium apartment in Phuket Thailand with open terrace, tropical garden swimming pool view, modern stylish Scandinavian furniture, warm sunny climate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz9t_CMAVNAScWb7J5DB21FuNIdWDSE6WWVmx0C48cWCPpimAf48VRA89uv3gGJj3fl12je1ov6LEcIgAgBIPQG_4wYYFULO5EbnVyBwVO-wGrgEUmG0fN5vUutr1KBXVbB_RNERWolTfPty7YATFq6MxAnjJ-6RKYV5aUTVzb3bigR6LHts4iuPEQDEU5cibZZN4jFypiQ3eAjixT9Xpr9utO1icbWJHmSDU8UuKc8Ho9JLNvbiA"/>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-meta-sm text-meta-sm text-primary font-bold shadow-sm">
+              Пхукет, Таиланд
+            </span>
+<span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-meta-sm text-meta-sm font-bold shadow-sm">
+              Топ для семей
+            </span>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between">
+<div>
+<div class="font-meta-sm text-meta-sm text-text-muted uppercase tracking-wider mb-1">Кондоминиум премиум</div>
+<h3 class="font-title-card text-title-card text-on-surface line-clamp-2 group-hover:text-primary transition-colors">
+                Апартаменты в кондоминиуме Bang Tao
+              </h3>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-border-muted/40 flex items-end justify-between">
+<div class="flex items-center gap-space-sm text-text-muted font-meta-sm text-meta-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bed</span> 2 сп.</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">square_foot</span> 70 м²</span>
+</div>
+<div class="text-right">
+<div class="font-price-lg text-price-lg text-primary font-extrabold leading-none">$800</div>
+<span class="font-meta-sm text-meta-sm text-text-muted">/ месяц</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 3: Saigon Loft -->
+<article class="flex-none w-[280px] sm:w-[320px] lg:w-[350px] snap-start bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col">
+<div class="relative w-full h-[220px] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Industrial modern loft apartment in Thao Dien District 2 Ho Chi Minh City Vietnam, double height ceilings, brick accent wall, dedicated workstation, warm cozy evening lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHxQD4S1H-UpY6LMHAX1f8TJsUGVzwHvfdaPbF0hfBXX6ZJA2WKaxUgzZy8cOrDHnudJEKfAQXnsUYKtUNUVuWEMnYewVF3-EE__QXPvgd2mzhfVW4D6-qHRr_jhoI--bS_OGQwAc5VVE6-hmR70tQn5soS97NafKLKXVZdx6x9Uz1dzGkBeO4LsEPotcR7I_Tj3oxKHrMHfuLAA8JFcG7z1hpHE0Pc1QtCDEn0PXuqA0NgSF-mOw"/>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-meta-sm text-meta-sm text-primary font-bold shadow-sm">
+              Хошимин, Вьетнам
+            </span>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between">
+<div>
+<div class="font-meta-sm text-meta-sm text-text-muted uppercase tracking-wider mb-1">Эксклюзивный лофт</div>
+<h3 class="font-title-card text-title-card text-on-surface line-clamp-2 group-hover:text-primary transition-colors">
+                Стильный лофт в District 2 (Thao Dien)
+              </h3>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-border-muted/40 flex items-end justify-between">
+<div class="flex items-center gap-space-sm text-text-muted font-meta-sm text-meta-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bed</span> 1 сп.</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">square_foot</span> 60 м²</span>
+</div>
+<div class="text-right">
+<div class="font-price-lg text-price-lg text-primary font-extrabold leading-none">$650</div>
+<span class="font-meta-sm text-meta-sm text-text-muted">/ месяц</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 4: Bali Garden Villa -->
+<article class="flex-none w-[280px] sm:w-[320px] lg:w-[350px] snap-start bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col">
+<div class="relative w-full h-[220px] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Peaceful tropical garden villa in Ubud Bali with open living pavilion, private stone swimming pool, surrounded by banana trees and exotic palms, serene atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdzbhGHqgoI153O45KtW0bE0hRKijP8ojMu3fIOGrv4vLUQ5iuM97298xbznGOKKducZHnvpwB9SctbD5-By_qJSF7qARN_YoiSS-wE-cdufRw4mlV78Jk59JQSryHY0ivMvAVP5wKtd9ILTSFZ8DYmigtUG8kkFHjn3e-QEVu844zX3cDtFL3ANMCUi0_sentI-g6a-nyUcnHDKvDtUGem2j6aZ_kJP2j07qfq7L7Z2ytx4tMwG8"/>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-meta-sm text-meta-sm text-primary font-bold shadow-sm">
+              Бали, Индонезия
+            </span>
+<span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-tertiary-container text-on-tertiary font-meta-sm text-meta-sm font-bold shadow-sm">
+              Сад + Бассейн
+            </span>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between">
+<div>
+<div class="font-meta-sm text-meta-sm text-text-muted uppercase tracking-wider mb-1">Приватная вилла</div>
+<h3 class="font-title-card text-title-card text-on-surface line-clamp-2 group-hover:text-primary transition-colors">
+                Уютная вилла с садом и бассейном
+              </h3>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-border-muted/40 flex items-end justify-between">
+<div class="flex items-center gap-space-sm text-text-muted font-meta-sm text-meta-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bed</span> 3 сп.</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">square_foot</span> 120 м²</span>
+</div>
+<div class="text-right">
+<div class="font-price-lg text-price-lg text-primary font-extrabold leading-none">$1,500</div>
+<span class="font-meta-sm text-meta-sm text-text-muted">/ месяц</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 5: Da Nang Penthouse -->
+<article class="flex-none w-[280px] sm:w-[320px] lg:w-[350px] snap-start bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col">
+<div class="relative w-full h-[220px] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Luxury high floor penthouse living room with floor to ceiling glass windows, sunset panoramic view of Danang city and Han river bridges, contemporary furniture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqxlq5tZWLj1vfkvPzKX7afZlC6uEMuzcrkjVNmlBhpyFClBJZCFErW9yOtd7MdNz252cll-4TRinONcg-g64AY0dIUkVHqWtFHf51GpjqWqFLinwHMSSLHj8u--wPNT9cSg99W85tPt7Hb9znSMCc7LhzCaklAxUhCxpVj_PG8L9M1P6D81i75P8oY4VlX8nz7EVcWZRLfqyVE_gUYSWJFujKFysIoAcL0_Ew0usmkVZe_QF0EZk"/>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-meta-sm text-meta-sm text-primary font-bold shadow-sm">
+              Дананг, Вьетнам
+            </span>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between">
+<div>
+<div class="font-meta-sm text-meta-sm text-text-muted uppercase tracking-wider mb-1">Видовой пентхаус</div>
+<h3 class="font-title-card text-title-card text-on-surface line-clamp-2 group-hover:text-primary transition-colors">
+                Пентхаус с панорамным видом на залив
+              </h3>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-border-muted/40 flex items-end justify-between">
+<div class="flex items-center gap-space-sm text-text-muted font-meta-sm text-meta-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bed</span> 2 сп.</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">square_foot</span> 95 м²</span>
+</div>
+<div class="text-right">
+<div class="font-price-lg text-price-lg text-primary font-extrabold leading-none">$1,200</div>
+<span class="font-meta-sm text-meta-sm text-text-muted">/ месяц</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 6: Bali Luxury Pool Villa -->
+<article class="flex-none w-[280px] sm:w-[320px] lg:w-[350px] snap-start bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col">
+<div class="relative w-full h-[220px] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="High end luxury architectural villa in Canggu Bali with expansive turquoise infinity pool, sunken lounge seating, lush landscaped palms, clear blue sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVb1clyT_iJN_vhQCPTYIFrVu9gUZT9IPc1A1p9lOqNyxTjgq95JZfYYfWFUZW90NiQXRvHd-QVFvYkCJqkk6EIVTogTl1CUNvo0QaT0V-cQllndv6KSMaZS0NHe9MpUfXdn1zsieA0bvN2WU24rxGJI8UcOcrVSrh58wzRWdIfoR3uKxYt5wqvmGb9rxx1g4Qxrp6hoX_CEdH2JHpt4PMOASFmnIGwSxYc9cBbwKvPkncMWdx_Zo"/>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-meta-sm text-meta-sm text-primary font-bold shadow-sm">
+              Бали, Индонезия
+            </span>
+<span class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-secondary text-on-secondary font-meta-sm text-meta-sm font-bold shadow-sm">
+              Premium Pool
+            </span>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between">
+<div>
+<div class="font-meta-sm text-meta-sm text-text-muted uppercase tracking-wider mb-1">Резиденция</div>
+<h3 class="font-title-card text-title-card text-on-surface line-clamp-2 group-hover:text-primary transition-colors">
+                Вилла с приватным бассейном в Чангу
+              </h3>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-border-muted/40 flex items-end justify-between">
+<div class="flex items-center gap-space-sm text-text-muted font-meta-sm text-meta-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bed</span> 4 сп.</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">square_foot</span> 180 м²</span>
+</div>
+<div class="text-right">
+<div class="font-price-lg text-price-lg text-primary font-extrabold leading-none">$2,300</div>
+<span class="font-meta-sm text-meta-sm text-text-muted">/ месяц</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+<!-- Action Button -->
+<div class="mt-space-xl text-center">
+<a class="inline-flex items-center gap-space-xs px-space-2xl py-space-md rounded-xl bg-surface-container-lowest hover:bg-primary hover:text-on-primary text-primary font-label-nav text-label-nav transition-all shadow-md active:scale-95" href="#rent">
+<span>Смотреть все 180+ вариантов аренды</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- SECTION 2: INTERACTIVE QUIZ PROMO BANNER («Подбери сам») -->
+<section class="w-full py-space-2xl bg-surface-container-low">
+<div class="max-w-[1600px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="relative overflow-hidden rounded-3xl bg-primary text-on-primary p-space-xl md:p-space-3xl shadow-xl">
+<!-- Ambient accents inside card -->
+<div class="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-secondary-container/25 blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-tertiary-fixed/20 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 max-w-3xl mx-auto text-center flex flex-col items-center">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-lowest/15 backdrop-blur-md flex items-center justify-center text-secondary-container mb-space-md shadow-inner">
+<span class="material-symbols-outlined text-[32px]">auto_fix_high</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-primary tracking-tight mb-space-sm">
+            Не знаешь, что выбрать? Используй фильтр «Подбери сам»
+          </h2>
+<p class="font-body-base text-body-base text-on-primary/85 leading-relaxed mb-space-xl max-w-2xl">
+            Сложно определиться с районом и типом недвижимости в чужой стране? Ответьте на 4 простых вопроса в нашем умном фильтре — и алгоритм моментально подберет варианты жилья с учетом вашего бюджета, удаленной работы, близости международных школ или визовых целей.
+          </p>
+<!-- Interactive Micro Quiz Action Box -->
+<div class="flex flex-col sm:flex-row items-center gap-space-md w-full justify-center">
+<button class="w-full sm:w-auto px-space-2xl py-space-md rounded-xl bg-secondary-container hover:bg-accent-hover text-on-secondary-container font-headline-sm text-label-nav shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-space-xs" id="open-quiz-modal-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">quiz</span>
+<span>Пройти опрос за 1 минуту</span>
+</button>
+<a class="w-full sm:w-auto px-space-xl py-space-md rounded-xl bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 text-on-primary font-label-nav text-label-nav transition-all text-center" href="#eeat">
+              Консультация с юристом
             </a>
+</div>
+<!-- Feature Bullets -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md mt-space-xl pt-space-lg border-t border-on-primary/10 w-full text-left">
+<div class="flex items-center gap-space-xs text-on-primary/90 font-meta-sm text-meta-sm">
+<span class="material-symbols-outlined text-secondary-container text-[18px]">bolt</span>
+<span>Расчет чистой стоимости с КУ</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-primary/90 font-meta-sm text-meta-sm">
+<span class="material-symbols-outlined text-secondary-container text-[18px]">verified_user</span>
+<span>Только проверенные собственники</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-primary/90 font-meta-sm text-meta-sm">
+<span class="material-symbols-outlined text-secondary-container text-[18px]">map</span>
+<span>Сравнение районов жизни</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: PURCHASE & INVESTMENT CATALOG -->
+<section class="w-full py-space-3xl bg-surface" id="buy">
+<div class="max-w-[1600px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-2xl">
+<div>
+<div class="flex items-center gap-space-xs text-secondary font-label-eyebrow text-label-eyebrow uppercase tracking-wider mb-2">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>Активы и ВНЖ инвестора</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tight">
+            Каталог объектов: покупка жилья в Азии для жизни и инвестиций
+          </h2>
+<div class="w-16 h-1 rounded-full bg-secondary-container mt-3"></div>
+<p class="font-body-base text-body-base text-text-muted mt-3 max-w-2xl">
+            Виллы с частным бассейном, таунхаусы в закрытых резиденциях и современные кондоминиумы с подтвержденной доходностью 8–12% годовых в долларах США.
+          </p>
+</div>
+<div class="flex items-center gap-space-sm self-start md:self-auto">
+<button aria-label="Назад" class="w-12 h-12 rounded-full bg-surface-container-lowest hover:bg-primary hover:text-on-primary text-primary transition-all flex items-center justify-center shadow-md active:scale-95" id="buy-prev" type="button">
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+</button>
+<button aria-label="Вперед" class="w-12 h-12 rounded-full bg-surface-container-lowest hover:bg-primary hover:text-on-primary text-primary transition-all flex items-center justify-center shadow-md active:scale-95" id="buy-next" type="button">
+<span class="material-symbols-outlined text-[22px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Purchase Carousel Track -->
+<div class="flex gap-space-xl overflow-x-auto pb-space-xl pt-space-xs scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none]" id="buy-carousel">
+<!-- Buy Card 1 -->
+<article class="flex-none w-[280px] sm:w-[320px] lg:w-[350px] snap-start bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col">
+<div class="relative w-full h-[220px] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Luxury tropical modern villa on Phuket Thailand with a stone swimming pool deck, floor to ceiling glass facade, landscaped garden and palm trees under sunset sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD2-VkwgOiN0LKNDJ7Pc3xtBKuyAD02X1UreOg-gZVh1ximbz8UczHeuUxp6H_pHmBASIO16DoQksdbPbKovh3-J2m4G0c1MN-pbA-rfeiRvvbXbR_k-bRk35l4w2U3yrVfLyDtYM07dEYzcxS3P_kkkMQ1XX9e1r2x0iZ8-wKsPZhnon6Da1kszaKvwV4y0vCBmU1sDykZ4_3eVoH64s0ghq3WT7sHjhyBLBaWhxaRCAy2L5hgPY"/>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-meta-sm text-meta-sm text-primary font-bold shadow-sm">
+              Пхукет, Таиланд
+            </span>
+<div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-primary text-on-primary font-meta-sm text-meta-sm font-extrabold shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">insights</span>
+<span>ROI ~9.5%</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between">
+<div>
+<div class="font-meta-sm text-meta-sm text-text-muted uppercase tracking-wider mb-1">Приватная вилла</div>
+<h3 class="font-title-card text-title-card text-on-surface line-clamp-2 group-hover:text-primary transition-colors">
+                Роскошная вилла с бассейном в Раваи
+              </h3>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-border-muted/40 flex items-end justify-between">
+<div class="flex items-center gap-space-sm text-text-muted font-meta-sm text-meta-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">square_foot</span> 250 м²</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">verified</span> Freehold</span>
+</div>
+<div class="text-right">
+<div class="font-price-lg text-price-lg text-primary font-extrabold leading-none">$350,000</div>
+<span class="font-meta-sm text-meta-sm text-text-muted">в собственность</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Buy Card 2 -->
+<article class="flex-none w-[280px] sm:w-[320px] lg:w-[350px] snap-start bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col">
+<div class="relative w-full h-[220px] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Modern townhouse community in Samui Thailand surrounded by coconut palm groves, clean white architecture, community clubhouse and swimming pool" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIo4qpreQD7JFL4r_Sk1Mdj3oAfLhYJ2gaBFN8S4_JWlyCTVdr_8Q3RPeTowlqAS8dLY_6kftp7hFa3NFqaXQiiIXj4rZf4xUvGXRTreGUDm7iDcRSk7coKdieJGq0aigfKgue9hoZ2y_oJDpjSEYasJqrN3r2IQPOYo0GN2pEQQGVHdBkhQK9qlUCDFX-kISKc9PH2O-orePo4lJb03vP2nicDkXwub-4JP499-Zn4CI7ZZ0KB2k"/>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-meta-sm text-meta-sm text-primary font-bold shadow-sm">
+              Самуи, Таиланд
+            </span>
+<div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-primary text-on-primary font-meta-sm text-meta-sm font-extrabold shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">insights</span>
+<span>ROI ~10.8%</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between">
+<div>
+<div class="font-meta-sm text-meta-sm text-text-muted uppercase tracking-wider mb-1">Закрытый комплекс</div>
+<h3 class="font-title-card text-title-card text-on-surface line-clamp-2 group-hover:text-primary transition-colors">
+                Таунхаус в закрытом комплексе на Самуи
+              </h3>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-border-muted/40 flex items-end justify-between">
+<div class="flex items-center gap-space-sm text-text-muted font-meta-sm text-meta-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">square_foot</span> 150 м²</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">shield</span> Управление</span>
+</div>
+<div class="text-right">
+<div class="font-price-lg text-price-lg text-primary font-extrabold leading-none">$180,000</div>
+<span class="font-meta-sm text-meta-sm text-text-muted">в собственность</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Buy Card 3 -->
+<article class="flex-none w-[280px] sm:w-[320px] lg:w-[350px] snap-start bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col">
+<div class="relative w-full h-[220px] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Contemporary riverside villa in Danang Vietnam with rooftop terrace, modern glass architecture overlooking peaceful Han river estuary, calm water reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe8j0xSPHEc1LpRK1n6BBtzEPDuEs-kujmsJZYZkphUTcEsjlHavbOhbLzVKJuG5CsO6AZAWLuvF07Avc-ul4G0duYFxOqjwzaux4F2sngjqs3bJAxrVcuJzxF-hhWXCsVEX5xaH9stOScR0hq9-ANs-XsjWRaTpeUWYSIPx-7mU7Ez7Io8RwMYC7S58K-Oeg5__nwZPFueYaYEJCuHpBBZ4lXN7Oe4fWtw63MPINXGVjSYO2PfcU"/>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-meta-sm text-meta-sm text-primary font-bold shadow-sm">
+              Дананг, Вьетнам
+            </span>
+<div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-primary text-on-primary font-meta-sm text-meta-sm font-extrabold shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">insights</span>
+<span>Рост цены +14%</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between">
+<div>
+<div class="font-meta-sm text-meta-sm text-text-muted uppercase tracking-wider mb-1">Дом у воды</div>
+<h3 class="font-title-card text-title-card text-on-surface line-clamp-2 group-hover:text-primary transition-colors">
+                Современный дом у реки в Son Tra
+              </h3>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-border-muted/40 flex items-end justify-between">
+<div class="flex items-center gap-space-sm text-text-muted font-meta-sm text-meta-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">square_foot</span> 180 м²</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">cottage</span> Земля</span>
+</div>
+<div class="text-right">
+<div class="font-price-lg text-price-lg text-primary font-extrabold leading-none">$220,000</div>
+<span class="font-meta-sm text-meta-sm text-text-muted">в собственность</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Buy Card 4 -->
+<article class="flex-none w-[280px] sm:w-[320px] lg:w-[350px] snap-start bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col">
+<div class="relative w-full h-[220px] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Traditional luxury Balinese stone villa in Ubud with pitched teak wood roof, carved stone walls, serene water lilies pond and infinity pool surrounded by rainforest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHMNVULfxPz1kMO4VuDYkmQXQXCBaghRz3LgX-2ocPqG6FgPfaV8h5lo_p8gf8iU79LKWWHY5OdKZiF_RQ4TjL9t6URj0ufuAR35_j_y_MUu99CZYTzVioegS0_AgSO0RFedJXg2mCNmoDJyxrX-Iy3GSf3dkfGb3Q-q9pZL2IhJ2HCOcxTE40fu-xjMDTwZKPUIx7X_CHsguT-rKxxVQM7q7_E0FqgVvZqpB-Q6oquOy4mk4aYa0"/>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-meta-sm text-meta-sm text-primary font-bold shadow-sm">
+              Бали, Индонезия
+            </span>
+<div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-primary text-on-primary font-meta-sm text-meta-sm font-extrabold shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">insights</span>
+<span>ROI ~11.2%</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between">
+<div>
+<div class="font-meta-sm text-meta-sm text-text-muted uppercase tracking-wider mb-1">Элитная резиденция</div>
+<h3 class="font-title-card text-title-card text-on-surface line-clamp-2 group-hover:text-primary transition-colors">
+                Классическая вилла в Убуде с видом на джунгли
+              </h3>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-border-muted/40 flex items-end justify-between">
+<div class="flex items-center gap-space-sm text-text-muted font-meta-sm text-meta-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">square_foot</span> 280 м²</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">badge</span> Leasehold 30+</span>
+</div>
+<div class="text-right">
+<div class="font-price-lg text-price-lg text-primary font-extrabold leading-none">$390,000</div>
+<span class="font-meta-sm text-meta-sm text-text-muted">в собственность</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Buy Card 5 -->
+<article class="flex-none w-[280px] sm:w-[320px] lg:w-[350px] snap-start bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col">
+<div class="relative w-full h-[220px] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Newly completed luxury high rise apartment tower in central Danang Vietnam with rooftop infinity pool, glass balconies, coastal city skyline" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQq7LZ-N0-Jnz_d2DeQtrHdVHRGKP_yIFqI1INbcd49GDaYIzt0Ac_D2ydtZRp2L7TvknpyxdhzbQv98zMVMtwo_Z5LuxcZf18bo0OGVj9ndkIaaogZtx28OO60uMPLutzAdkIwoGvjlIHhlqBxxAh88YtSGJZdIZz2DHFOSdIl9AfFx3QmrIRymRyGqSrRdw6Hq0VnO7djMPGLWO_7DbECIFZGuvcRcW-PI0k64FU0Sxgs_OxITc"/>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-meta-sm text-meta-sm text-primary font-bold shadow-sm">
+              Дананг, Вьетнам
+            </span>
+<div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-primary text-on-primary font-meta-sm text-meta-sm font-extrabold shadow-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">insights</span>
+<span>ROI ~8.5%</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col flex-1 justify-between">
+<div>
+<div class="font-meta-sm text-meta-sm text-text-muted uppercase tracking-wider mb-1">Новостройка 2026</div>
+<h3 class="font-title-card text-title-card text-on-surface line-clamp-2 group-hover:text-primary transition-colors">
+                Апартаменты в новом комплексе у моря
+              </h3>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-border-muted/40 flex items-end justify-between">
+<div class="flex items-center gap-space-sm text-text-muted font-meta-sm text-meta-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">square_foot</span> 78 м²</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">apartment</span> Pink Book</span>
+</div>
+<div class="text-right">
+<div class="font-price-lg text-price-lg text-primary font-extrabold leading-none">$155,000</div>
+<span class="font-meta-sm text-meta-sm text-text-muted">в собственность</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+<!-- Action Button -->
+<div class="mt-space-xl text-center">
+<a class="inline-flex items-center gap-space-xs px-space-2xl py-space-md rounded-xl bg-surface-container-lowest hover:bg-primary hover:text-on-primary text-primary font-label-nav text-label-nav transition-all shadow-md active:scale-95" href="#buy">
+<span>Смотреть все 90+ инвестиционных объектов</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- SECTION 4: TRUST & E-E-A-T VALUE BLOCKS -->
+<section class="w-full py-space-3xl bg-surface-container-low" id="eeat">
+<div class="max-w-[1600px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="text-center max-w-3xl mx-auto mb-space-3xl">
+<div class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-container font-label-eyebrow text-label-eyebrow text-primary uppercase tracking-wider mb-space-sm">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Безопасность трансграничных сделок</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tight">
+          Почему экспаты выбирают KeyHaven
+        </h2>
+<div class="w-16 h-1 rounded-full bg-secondary-container mx-auto mt-3"></div>
+<p class="font-body-base text-body-base text-text-muted mt-3">
+          Мы полностью устранили риски самостоятельного поиска жилья в Азии: языковой барьер, завышенные коммунальные тарифы, невозвратные депозиты и серые юридические схемы.
+        </p>
+</div>
+<!-- Bento-style Trust Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter-desktop">
+<!-- Feature 1 -->
+<div class="bg-surface-container-lowest p-space-xl rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-primary-container text-on-primary flex items-center justify-center mb-space-lg">
+<span class="material-symbols-outlined text-[26px]">contract</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-space-sm">
+              Прозрачный договор и фиксированный депозит
+            </h3>
+<p class="font-body-base text-body-base text-on-surface-variant leading-relaxed">
+              Все контракты составляются на русском и английском языках с детальной фотофиксацией состояния имущества. Депозит фиксируется в соглашении с четкими правилами и сроками гарантированного возврата.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-border-muted/30 flex items-center gap-space-xs text-primary font-meta-sm text-meta-sm font-bold">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span>Двуязычные юридические бланки</span>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="bg-surface-container-lowest p-space-xl rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center mb-space-lg">
+<span class="material-symbols-outlined text-[26px]">person_check</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-space-sm">
+              Проверенные собственники без скрытых комиссий
+            </h3>
+<p class="font-body-base text-body-base text-on-surface-variant leading-relaxed">
+              Мы работаем напрямую с реальными владельцами вилл и застройщиками. Цены соответствуют рыночным: вы не платите наценку «для иностранцев», а тарифы на электричество и воду подтверждаются государственными квитанциями.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-border-muted/30 flex items-center gap-space-xs text-primary font-meta-sm text-meta-sm font-bold">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span>Гос. тарифы без накруток</span>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="bg-surface-container-lowest p-space-xl rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-tertiary-container text-on-tertiary flex items-center justify-center mb-space-lg">
+<span class="material-symbols-outlined text-[26px]">policy</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-space-sm">
+              Юридическое сопровождение и визовый консалтинг
+            </h3>
+<p class="font-body-base text-body-base text-on-surface-variant leading-relaxed">
+              Комплексная проверка земельных титулов (Chanote в Таиланде, Pink Book во Вьетнаме, Hak Pakai на Бали). Помощь в открытии местных банковских счетов, получении ВНЖ инвестора, LTR-виз или виз цифровых кочевников.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-md border-t border-border-muted/30 flex items-center gap-space-xs text-primary font-meta-sm text-meta-sm font-bold">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span>Локальные юристы в Son Tra, Rawai, Ubud</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: FAQ INTERACTIVE ACCORDION -->
+<section class="w-full py-space-3xl bg-surface">
+<div class="max-w-[1200px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="text-center max-w-2xl mx-auto mb-space-2xl">
+<div class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-container font-label-eyebrow text-label-eyebrow text-primary uppercase tracking-wider mb-space-sm">
+<span class="material-symbols-outlined text-[16px]">help</span>
+<span>Частые вопросы релокантов</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface tracking-tight">
+          Ответы на ключевые вопросы
+        </h2>
+<div class="w-16 h-1 rounded-full bg-secondary-container mx-auto mt-3"></div>
+</div>
+<div class="space-y-space-md">
+<!-- FAQ Item 1 -->
+<div class="faq-card bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden transition-all">
+<button class="faq-toggle w-full p-space-lg flex items-center justify-between text-left font-title-card text-title-card text-on-surface hover:text-primary transition-colors cursor-pointer" type="button">
+<span>Можно ли снять жилье без посредников на долгосрок через платформу?</span>
+<span class="faq-icon material-symbols-outlined text-primary text-[24px] transition-transform duration-300">add</span>
+</button>
+<div class="faq-content hidden px-space-lg pb-space-lg font-body-base text-body-base text-on-surface-variant leading-relaxed border-t border-border-muted/20 pt-space-md">
+            Да, наша платформа создана специально для устранения посреднических цепочек и хаотичных риелторов на улице. Вы взаимодействуете с аккредитованными владельцами или официальными управляющими компаниями при юридическом надзоре KeyHaven Asia. Все соглашения заключаются прозрачно, без скрытых сборов и агентских наценок поверх указанной арендной ставки.
+          </div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="faq-card bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden transition-all">
+<button class="faq-toggle w-full p-space-lg flex items-center justify-between text-left font-title-card text-title-card text-on-surface hover:text-primary transition-colors cursor-pointer" type="button">
+<span>Как рассчитываются коммунальные платежи и электричество?</span>
+<span class="faq-icon material-symbols-outlined text-primary text-[24px] transition-transform duration-300">add</span>
+</button>
+<div class="faq-content hidden px-space-lg pb-space-lg font-body-base text-body-base text-on-surface-variant leading-relaxed border-t border-border-muted/20 pt-space-md">
+            В карточках каждого объекта зафиксирован статус тарифов: большинство проверенных апартаментов подключены к государственным счетчикам (PEA в Таиланде, EVN во Вьетнаме, PLN в Индонезии). Это исключает частую схему, когда иностранцам выставляют двойной или тройной тариф за киловатт кондиционера. В день заезда показания вносятся в акт приема-передачи.
+          </div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="faq-card bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden transition-all">
+<button class="faq-toggle w-full p-space-lg flex items-center justify-between text-left font-title-card text-title-card text-on-surface hover:text-primary transition-colors cursor-pointer" type="button">
+<span>Каков размер депозита и как гарантируется его возврат?</span>
+<span class="faq-icon material-symbols-outlined text-primary text-[24px] transition-transform duration-300">add</span>
+</button>
+<div class="faq-content hidden px-space-lg pb-space-lg font-body-base text-body-base text-on-surface-variant leading-relaxed border-t border-border-muted/20 pt-space-md">
+            Стандартный депозит составляет 1–2 месяца аренды в зависимости от длительности контракта (6 или 12 месяцев). Мы фиксируем в договоре условия возврата средств в день выезда после осмотра помещения. При возникновении разногласий KeyHaven Asia выступает независимым гарантом, опираясь на первоначальный акт фотофиксации.
+          </div>
+</div>
+<!-- FAQ Item 4 -->
+<div class="faq-card bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden transition-all">
+<button class="faq-toggle w-full p-space-lg flex items-center justify-between text-left font-title-card text-title-card text-on-surface hover:text-primary transition-colors cursor-pointer" type="button">
+<span>Помогаете ли вы с получением ВНЖ и визовыми вопросами?</span>
+<span class="faq-icon material-symbols-outlined text-primary text-[24px] transition-transform duration-300">add</span>
+</button>
+<div class="faq-content hidden px-space-lg pb-space-lg font-body-base text-body-base text-on-surface-variant leading-relaxed border-t border-border-muted/20 pt-space-md">
+            Да. При покупке инвестиционной недвижимости в Индонезии или Таиланде наши сертифицированные юридические партнеры ведут процесс оформления Golden Visa, LTR (Long-Term Resident) или визы цифрового кочевника E33G. Для арендаторов мы предоставляем официальные договоры и регистрацию по месту жительства (форма TM30 в Таиланде), необходимые для продления туристических и образовательных виз.
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: BOTTOM ACTION / HOST BANNER -->
+<section class="w-full py-space-2xl bg-surface-container-low">
+<div class="max-w-[1600px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="bg-surface-container-lowest rounded-3xl p-space-xl md:p-space-2xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-xl">
+<div class="flex items-center gap-space-lg">
+<div class="w-16 h-16 rounded-2xl bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[36px]">key</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">
+              Владеете недвижимостью в Юго-Восточной Азии?
+            </h3>
+<p class="font-body-base text-body-base text-text-muted">
+              Сдавайте в долгосрочную аренду или продавайте платежеспособным релокантам и международным экспатам.
+            </p>
+</div>
+</div>
+<div class="flex items-center gap-space-md w-full md:w-auto">
+<a class="w-full md:w-auto px-space-2xl py-space-md rounded-xl bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-label-nav shadow-md transition-all text-center whitespace-nowrap" data-path="stan-te-khozyainom" href="#">
+            Стать хозяином
+          </a>
+</div>
+</div>
+</div>
+</section>
+<!-- INTERACTIVE CLIENT-SIDE SCRIPT -->
+<script>
+    // 1. Collapsible Advanced Search Panel
+    const toggleFilterBtn = document.getElementById('toggle-filter-btn');
+    const advancedFilters = document.getElementById('advanced-filters');
+    const filterChevron = document.getElementById('filter-chevron');
 
-            <!-- Поиск + Навигация -->
-            <div class="header-center" id="nav-menu">
-                <!-- Компактная строка быстрого поиска -->
-                <div class="header-search">
-                    <input type="text" class="search-item search-input" placeholder="Локации" aria-label="Локация">
-                    <div class="search-divider"></div>
-                    <div class="search-dropdown" id="deal-dropdown">
-                        <button class="search-item search-select-toggle" id="deal-toggle" aria-haspopup="true" aria-expanded="false">
-                            <span id="deal-label">Аренда</span>
-                            <span class="chevron">▼</span>
-                        </button>
-                        <div class="search-dropdown-menu">
-                            <button class="active" data-value="rent">Аренда</button>
-                            <button data-value="buy">Покупка</button>
-                        </div>
-                    </div>
-                    <button class="search-btn">Найти</button>
-                </div>
-
-                <nav class="nav-links">
-                    <a href="#rent">Аренда</a>
-                    <a href="#buy">Покупка</a>
-                    <a href="#host">Станьте хозяином</a>
-                </nav>
-            </div>
-
-            <!-- Языки (Физические URL) + Бургер -->
-            <div class="header-controls">
-                <div class="lang-wrapper" id="lang-dropdown">
-                    <button class="lang-toggle" id="lang-toggle" aria-haspopup="true" aria-expanded="false">
-                        <span>RU</span>
-                        <span class="chevron">▼</span>
-                    </button>
-                    <div class="lang-menu">
-                        <a href="../en/">EN</a>
-                        <a href="../ru/" class="active">RU</a>
-                    </div>
-                </div>
-                <button class="burger-menu" id="burger-menu" aria-label="Меню">☰</button>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <!-- ГЛАВНЫЙ ЭКРАН (HERO) -->
-        <section class="hero">
-            <h1>Ваш новый дом в Азии ждет</h1>
-            <p>Планируете релокацию? Наш надежный агрегатор поможет найти жилье для долгосрочной аренды. От уютной студии до роскошной виллы, кондоминиума или апартаментов. Учтем важные для вас параметры: прозрачный депозит и коммунальные платежи.</p>
-            <a href="#rent" class="hero-btn">Смотреть каталог</a>
-        </section>
-
-        <!-- РАЗДЕЛ "АРЕНДА" -->
-        <section class="section-padding bg-gray section-pb-sm" id="rent">
-            <div class="container">
-                <div class="section-head">
-                    <h2 class="section-title">Долгосрочная аренда недвижимости (Тайланд, Вьетнам, Индонезия)</h2>
-                    <div class="cards-nav">
-                        <button type="button" class="cards-prev" aria-label="Предыдущие карточки">‹</button>
-                        <button type="button" class="cards-next" aria-label="Следующие карточки">›</button>
-                    </div>
-                </div>
-                
-                <div class="cards-wrapper">
-                    <div class="cards-grid">
-                        <!-- Карточка 1 -->
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Современная студия у моря в Дананге для долгосрочной аренды — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Дананг, Вьетнам</div>
-                                <h3 class="card-title">Современная студия у моря</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>🛏 1 спальня</span><span>📏 45 м²</span></div>
-                                    <div class="card-price">$450 <span>/ мес</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка 2 -->
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1499916078039-922301b0eb9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Апартаменты в кондоминиуме на Пхукете для долгосрочной аренды — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Пхукет, Тайланд</div>
-                                <h3 class="card-title">Апартаменты в кондоминиуме</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>🛏 2 спальни</span><span>📏 70 м²</span></div>
-                                    <div class="card-price">$800 <span>/ мес</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка 3 -->
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Стильный лофт в Хошимине для долгосрочной аренды — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Хошимин, Вьетнам</div>
-                                <h3 class="card-title">Стильный лофт в District 2</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>🛏 1 спальня</span><span>📏 60 м²</span></div>
-                                    <div class="card-price">$650 <span>/ мес</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Карточка 4 -->
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Уютная вилла с садом на Бали для долгосрочной аренды — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Бали, Индонезия</div>
-                                <h3 class="card-title">Уютная вилла с садом</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>🛏 3 спальни</span><span>📏 120 м²</span></div>
-                                    <div class="card-price">$1,500 <span>/ мес</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка 5 -->
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Пентхаус с панорамным видом в Дананге для долгосрочной аренды — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Дананг, Вьетнам</div>
-                                <h3 class="card-title">Пентхаус с панорамным видом</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>🛏 2 спальни</span><span>📏 95 м²</span></div>
-                                    <div class="card-price">$1,200 <span>/ мес</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка 6 -->
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Семейные апартаменты у пляжа на Пхукете для долгосрочной аренды — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Пхукет, Тайланд</div>
-                                <h3 class="card-title">Семейные апартаменты у пляжа</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>🛏 3 спальни</span><span>📏 110 м²</span></div>
-                                    <div class="card-price">$1,100 <span>/ мес</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка 7 -->
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Вилла с приватным бассейном на Бали для долгосрочной аренды — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Бали, Индонезия</div>
-                                <h3 class="card-title">Вилла с приватным бассейном</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>🛏 4 спальни</span><span>📏 180 м²</span></div>
-                                    <div class="card-price">$2,300 <span>/ мес</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка 8 -->
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Апартаменты с фитнес-залом в Хошимине для долгосрочной аренды — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Хошимин, Вьетнам</div>
-                                <h3 class="card-title">Апартаменты с фитнес-залом</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>🛏 1 спальня</span><span>📏 52 м²</span></div>
-                                    <div class="card-price">$700 <span>/ мес</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <a href="../ru/rent/" class="btn-outline">Смотреть все варианты аренды</a>
-            </div>
-        </section>
-
-        <!-- БЛОК ПОДБЕРИ САМ (ИНТЕРАКТИВ/LSI) -->
-        <section class="section-padding quiz-section">
-            <div class="container">
-                <div class="quiz-banner">
-                    <h2>Не знаешь, что выбрать? Используй фильтр «Подбери сам»</h2>
-                    <p>Сложно определиться с районом и типом недвижимости? Пройди короткий опрос в нашем умном фильтре, и алгоритм покажет лучшие варианты, будь то вилла на Бали или студия в Дананге, под ваш бюджет и цели (жизнь, удаленка, инвестиции).</p>
-                    <a href="../ru/quiz/" class="hero-btn" style="background-color: var(--bg-white); color: var(--primary);">Пройти опрос за 1 минуту</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- РАЗДЕЛ "ПОКУПКА" -->
-        <section class="section-padding bg-gray section-pt-sm" id="buy">
-            <div class="container">
-                <div class="section-head">
-                    <h2 class="section-title">Каталог объектов: покупка жилья в Азии для жизни и инвестиций</h2>
-                    <div class="cards-nav">
-                        <button type="button" class="cards-prev" aria-label="Предыдущие карточки">‹</button>
-                        <button type="button" class="cards-next" aria-label="Следующие карточки">›</button>
-                    </div>
-                </div>
-                
-                <div class="cards-wrapper">
-                    <div class="cards-grid">
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Роскошная вилла с бассейном на Пхукете для покупки — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Пхукет, Тайланд</div>
-                                <h3 class="card-title">Роскошная вилла с бассейном</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>📏 250 м²</span></div>
-                                    <div class="card-price">$350,000</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Таунхаус в закрытом комплексе на Самуи для покупки — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Самуи, Тайланд</div>
-                                <h3 class="card-title">Таунхаус в закрытом комплексе</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>📏 150 м²</span></div>
-                                    <div class="card-price">$180,000</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Современный дом у реки в Дананге для покупки — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Дананг, Вьетнам</div>
-                                <h3 class="card-title">Современный дом у реки</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>📏 180 м²</span></div>
-                                    <div class="card-price">$220,000</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Классическая вилла в Убуде на Бали для покупки — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Бали, Индонезия</div>
-                                <h3 class="card-title">Классическая вилла в Убуде</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>📏 280 м²</span></div>
-                                    <div class="card-price">$390,000</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка 5 -->
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Апартаменты в новом комплексе в Дананге для покупки — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Дананг, Вьетнам</div>
-                                <h3 class="card-title">Апартаменты в новом комплексе</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>📏 78 м²</span></div>
-                                    <div class="card-price">$155,000</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка 6 -->
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Современный дом с террасой на Бали для покупки — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Бали, Индонезия</div>
-                                <h3 class="card-title">Современный дом с террасой</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>📏 210 м²</span></div>
-                                    <div class="card-price">$265,000</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка 7 -->
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Апартаменты с панорамными окнами на Пхукете для покупки — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Пхукет, Тайланд</div>
-                                <h3 class="card-title">Апартаменты с панорамными окнами</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>📏 96 м²</span></div>
-                                    <div class="card-price">$175,000</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка 8 -->
-                        <div class="card">
-                            <div class="card-img-wrap">
-                                <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Светлые апартаменты в центре Хошимина для покупки — KeyHaven Asia" loading="lazy" class="card-img">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-location">Хошимин, Вьетнам</div>
-                                <h3 class="card-title">Светлые апартаменты в центре</h3>
-                                <div class="card-details">
-                                    <div class="card-features"><span>📏 120 м²</span></div>
-                                    <div class="card-price">$198,000</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <a href="../ru/buy/" class="btn-outline">Смотреть все варианты для покупки</a>
-            </div>
-        </section>
-        </main>
-
-    <!-- ПОДВАЛ (ФУТЕР) С E-E-A-T ДАННЫМИ -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <a href="../ru/" class="footer-logo">
-                        <!-- НОВЫЙ ЛОГОТИП FOOTER (KeyHaven) -->
-                        <svg viewBox="0 0 1888 1604" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M880.368 1.28084C936.855 -4.76416 1006.12 11.0384 1055.55 39.1764C1089.74 58.4923 1119.77 84.3857 1143.91 115.363C1168.05 146.34 1185.81 181.789 1196.19 219.666C1217.42 297.203 1207.46 374.195 1166.78 443.378C1132.93 500.951 1080.4 546.348 1018.41 571.543C1002.65 577.945 987.016 582.162 970.716 586.557C970.706 596.768 970.156 608.988 970.706 618.975C972.306 648.323 1018.51 644.747 1011.37 680.794C1011.07 698.957 970.497 707.997 970.586 721.773C970.746 745.116 1017.01 745.371 1010.85 777.976C1006.2 802.63 973.316 801.029 970.716 819.472C968.316 836.439 1017.45 847.772 1011.97 870.69C1009.22 885.145 998.166 892.081 987.886 899.665C963.586 917.524 940.066 947.75 915.345 961.9C889.698 976.59 855.029 955.24 838.133 936.55C814.675 913.995 815.02 892.585 815.134 862.458C815.487 769.073 809.219 675.245 811.644 581.895C774.737 572.702 729.848 545.952 701.557 521.089C645.51 471.833 607.437 398.682 601.682 324.333C598.651 285.224 603.358 245.9 615.534 208.612C627.711 171.323 647.118 136.8 672.645 107.016C725.177 45.6865 799.868 7.66703 880.368 1.28084ZM899.268 193.788C835.983 241.062 774.337 290.892 711.192 338.387C703.697 344.025 695.029 350.53 687.964 356.663C696.285 385.346 710.225 412.089 728.974 435.337C747.723 458.584 770.907 477.873 797.177 492.081C833.318 511.339 868.853 518.552 909.581 518.054C970.228 515.627 1027.43 489.22 1068.62 444.638C1094.79 416.342 1105.59 393.152 1119.06 358.28L969.006 245.45C957.716 236.908 946.426 228.496 935.216 219.841C925.686 212.474 909.474 199.088 899.268 193.788ZM1128.72 292.813C1121.53 163.131 1017.94 69.4918 888.114 76.2164L886.305 76.3199C769.449 90.085 691.451 171.175 680.655 287.772C700.99 273.709 723.601 255.158 743.137 239.685L829.484 171.337C839.43 163.419 851.659 154.236 861.305 146.256C899.44 114.71 900.488 116.686 937.656 146.113C960.856 164.016 989.496 184.745 1011.45 203.246C1011.5 194.899 1010.42 183.316 1014.57 176.519C1023.62 170.047 1064.67 170.086 1066.72 178.631C1069.82 191.553 1068.03 233.462 1068.13 247.304C1088.3 262.243 1108.54 278.185 1128.72 292.813Z" fill="#076D68"/>
-                        <path d="M18.7677 1041.32C35.7167 1041.16 52.6777 1040.99 69.6157 1040.75C77.1347 1040.57 85.0787 1042.1 90.4127 1047.83C97.6397 1055.6 97.5607 1066.81 97.3537 1076.75C96.8817 1099.37 97.6727 1121.98 97.5097 1144.6C117.977 1123.99 136.116 1100.11 155.708 1078.59C166.071 1068.25 181.96 1042.54 198.027 1041.66C223.351 1040.28 251.703 1041.19 277.256 1041.45C289.446 1041.58 295.283 1054.18 287.49 1063.5C277.008 1076.04 264.829 1088.33 253.499 1100.32C230.65 1124.33 208.024 1148.56 185.623 1172.99C211.343 1208.28 242.505 1245.85 269.321 1281.44C285.232 1301.96 324.35 1338.55 268.14 1336.61C252.009 1336.05 198.95 1340.07 190.004 1329.69C164.905 1300.58 142.958 1264.05 118.783 1233.61C112.001 1240.62 104.48 1247.5 97.3647 1254.22C96.6957 1332.94 111.388 1340.65 22.3847 1336.09C-5.26427 1334.68 0.480719 1305.68 0.521719 1287.65L0.476721 1232.14L0.302725 1122.39C0.267725 1101.89 -0.0012747 1081.07 0.676725 1060.58C1.03673 1049.68 8.33972 1043.26 18.7677 1041.32ZM524.986 1112.34C591.692 1111.67 585.737 1102.96 608.951 1166.68C616.641 1187.83 624.473 1208.92 632.444 1229.96C641.862 1206.25 649.636 1182.04 658.371 1158.15C663.015 1147.99 669.331 1118.57 680.858 1114.64C692.314 1110.74 733.089 1111.17 743.861 1114.69C769.26 1122.98 739.044 1174.83 732.094 1192.53C714.077 1238.73 695.625 1284.76 676.741 1330.61C661.469 1368.97 647.715 1406.42 604.155 1419.81C579.864 1426.66 548.024 1427.98 524.567 1417.65C501.97 1407.7 519.209 1375.77 526.263 1360.52C534.276 1343.19 554.414 1356.91 567.78 1352.85C578.432 1349.62 582.634 1342.6 587.799 1333.28C568.949 1285.2 546.376 1236.49 527.229 1188.21C520.566 1169.75 508.922 1150.69 504.428 1131.69C501.562 1119.57 515.357 1113.34 524.986 1112.34Z" fill="#076D68"/>
-                        <path d="M395.78 1108.3C426.682 1107.48 456.089 1115.75 479.517 1136.48C501.699 1156.39 515.165 1184.21 517.01 1213.96C517.69 1225.88 513.444 1242.65 500.491 1243.29C457.756 1245.39 409.97 1243.27 367.6 1244.77C379.487 1273.89 404.334 1281.24 432.603 1270.01C439.683 1267.2 455.157 1255.53 462.197 1257.02C473.735 1259.46 492.18 1278.25 499.025 1287.34C506.501 1303.03 490.99 1312.05 479.671 1319.1C432.572 1348.44 364.364 1346.04 321.955 1309.44C310.651 1299.55 301.423 1287.51 294.809 1274.02C288.194 1260.53 284.323 1245.87 283.422 1230.87C278.582 1161.16 327.999 1112.86 395.78 1108.3ZM436.411 1197.34C430.831 1176.89 420.031 1165.89 397.572 1167.03C378.555 1171.5 372.334 1179.09 366.03 1197C379.173 1197.98 393.092 1197.69 406.336 1197.64C416.264 1197.54 426.515 1197.58 436.411 1197.34Z" fill="#076D68"/>
-                        <path d="M1533.55 1110.08C1565.8 1106.68 1594.63 1115.37 1619.33 1136.62C1639.94 1154.36 1652.68 1182.21 1654.31 1209.27C1654.85 1218.15 1654.63 1228.94 1648.01 1235.81C1645.31 1238.57 1641.82 1240.42 1638.02 1241.12C1628.19 1242.99 1601.75 1242.04 1590.31 1242.13C1556.62 1242.4 1522.68 1241.35 1488.95 1242.25C1502.54 1294.82 1553.19 1310.64 1596.77 1276.23C1603.55 1270.88 1606.98 1270.06 1615.17 1270.97L1616.45 1271.12C1688.25 1303.14 1558.59 1378.42 1479.39 1319.18C1467.35 1310.14 1457.22 1298.81 1449.58 1285.83C1441.94 1272.86 1436.94 1258.5 1434.88 1243.59C1425.49 1177.62 1464.82 1119.69 1531.81 1110.24C1532.39 1110.19 1532.97 1110.13 1533.55 1110.08ZM793.606 1037.17C832.672 1035.86 824.992 1067.08 824.967 1095.94C824.877 1117.27 824.925 1138.6 825.111 1159.93C869.549 1160.91 917.983 1159.84 962.775 1159.93L962.725 1094.08C962.705 1082.8 962.436 1071.58 962.846 1060.26C963.286 1048.43 969.376 1039.26 981.806 1037.82C997.946 1035.95 1015.96 1037.73 1016.79 1058.12C1017.54 1076.61 1017.27 1095.23 1017.34 1113.8C1017.68 1152.29 1017.65 1190.79 1017.26 1229.28C1017.29 1248.21 1017.44 1267.14 1017.71 1286.07C1017.96 1309.9 1023.81 1335.77 992.056 1336.92C955.426 1336.8 962.705 1307.35 962.685 1279.79L962.855 1208.78C919.062 1207.47 869.013 1208.26 825.104 1208.74C824.839 1226.9 827.579 1316.4 821.926 1326.3C819.329 1330.84 814.194 1334.45 809.217 1335.83C800.961 1338.12 787.396 1337.83 780.062 1333.33C775.838 1330.74 771.839 1325.59 770.813 1320.69C768.225 1308.34 769.743 1293.35 769.777 1280.69L769.871 1215.51L770.029 1118.26C769.984 1098.2 769.641 1078.07 770.375 1058.03C770.876 1044.33 779.578 1038.97 792.007 1037.23L793.606 1037.17ZM1543.07 1154.29C1513.3 1156.55 1498.14 1173.38 1489.72 1200.8C1509.71 1201.28 1529.71 1201.48 1549.7 1201.39C1566.42 1201.44 1583.14 1201.33 1599.86 1201.07C1592.64 1169.61 1575.6 1154.78 1543.07 1154.29Z" fill="#076D68"/>
-                        <path d="M1113.37 1110.22C1135.91 1108.17 1159.8 1111.11 1179.88 1122.01C1190.47 1127.66 1199.81 1135.39 1207.33 1144.74C1214.86 1154.08 1220.41 1164.86 1223.67 1176.41C1227.35 1189.29 1227.7 1201.59 1227.59 1214.9C1227.33 1249.23 1228.04 1283.54 1227.7 1317.87C1227.49 1339.04 1200.65 1341.88 1186.29 1333.41C1178.03 1328.48 1176.96 1321.18 1175.48 1312.66C1173.95 1314.34 1172.38 1315.97 1170.77 1317.55C1136.84 1350.43 1078.82 1346.1 1046.82 1312.2C1035.22 1297.79 1030.74 1283.87 1031.79 1265.47C1034.8 1212.84 1089.07 1196.84 1133.75 1198.95C1146.74 1199.56 1160.05 1201.28 1173.15 1202.74C1172.95 1198.33 1172.75 1193.38 1171.84 1189.07C1170.75 1183.81 1168.63 1178.81 1165.61 1174.37C1162.58 1169.93 1158.71 1166.14 1154.21 1163.2C1136.43 1151.77 1111.33 1153.54 1092.72 1161.82C1082.14 1167.05 1068.56 1180.33 1056.74 1169.96C1036.92 1152.57 1043.78 1133.97 1065.43 1123.72C1082.32 1115.72 1095.54 1112.11 1113.37 1110.22ZM1172.94 1240.53C1155.38 1238.42 1135.83 1235.78 1118.13 1237.14C1107.56 1238.89 1095.27 1242.17 1089.34 1251.14C1073.74 1274.74 1096.21 1297.41 1120.77 1296.91C1127.77 1296.77 1132.12 1296.44 1138.6 1294.79C1170.88 1284.86 1173.74 1271.98 1172.94 1240.53Z" fill="#076D68"/>
-                        <path d="M1777.46 1110.21C1822.06 1105.58 1861 1125.05 1878.51 1167.47C1882.29 1176.67 1884.75 1186.36 1885.83 1196.25C1889.81 1233.31 1884.22 1278.63 1886.77 1316.45C1888.4 1340.62 1857.81 1343.5 1841.45 1336.47C1827 1330.25 1830.67 1306.28 1830.3 1293.68C1828.51 1263.01 1835.04 1221.28 1826.72 1192.42C1817.8 1161.53 1786.89 1151.74 1757.91 1161.87C1725.47 1177.86 1727.3 1203.51 1727.36 1234.27L1727.63 1286.75C1727.74 1297.91 1727.58 1308.16 1727.2 1319.36C1726.21 1347.74 1672.71 1346.4 1672.82 1319C1673.08 1255.53 1672.13 1192.14 1670.1 1128.72C1669.96 1124.61 1670.53 1120.86 1673.62 1117.99C1683.04 1108.56 1706.02 1109.27 1715.41 1118.48C1721.53 1124.55 1722.36 1132.11 1722.37 1140.29C1739.53 1121.42 1752.75 1114.19 1777.46 1110.21ZM1332.98 1263.18C1347.17 1231.32 1357.59 1196.89 1370.96 1164.67C1375.22 1154.41 1385.89 1116.89 1396.45 1114.52C1467.25 1098.6 1434.08 1150.18 1420.2 1184.12C1400.04 1230.39 1382.72 1278.13 1362.58 1324.42C1359.6 1331.27 1355.25 1336.2 1347.89 1338.23C1333.27 1342.26 1310.92 1341.14 1303.92 1325.24C1296.25 1309.61 1290.59 1293.03 1283.64 1277.09C1263.86 1231.68 1245.14 1185.74 1223.78 1141.05C1216.72 1126.3 1220.43 1116.23 1236.5 1112.3C1249.5 1111.91 1268.71 1109.45 1275.27 1123.76C1289.85 1155.58 1301.91 1188.77 1315.71 1221C1321.61 1234.77 1327.75 1249.19 1332.98 1263.18Z" fill="#076D68"/>
-                        <path d="M1266.67 1462.79C1274.73 1462.35 1282.92 1462.65 1291.01 1462.81C1310.75 1503.15 1338.33 1560.28 1354.14 1601.11C1344.43 1601.97 1338.06 1601.86 1328.42 1601.63C1323.25 1591.43 1318.13 1580.63 1314.3 1569.87C1304.84 1570.12 1295.08 1570.14 1285.59 1570.27C1271.08 1570.49 1256.58 1570.34 1242.08 1569.83C1238.21 1580.16 1232.04 1591.72 1227.06 1601.71C1218.53 1602 1209.22 1601.69 1200.63 1601.57C1216.76 1565.83 1234.44 1530.49 1250.53 1494.7C1255.17 1484.4 1260.59 1472.21 1266.67 1462.79ZM1277.02 1494.14C1270.17 1510.51 1260.9 1531.88 1252.88 1547.82L1280.36 1547.69L1303.09 1547.86C1299.32 1538.65 1282.67 1497.13 1277.02 1494.14Z" fill="#F4A01B"/>
-                        <path d="M663.45 1462.3C670.887 1462.18 678.296 1462.66 685.722 1463.04C705.651 1509.37 728.226 1554.68 747.981 1600.83C738.626 1601.91 730.79 1601.83 721.461 1601.75L707.276 1570.9L679.586 1570.47C665.019 1569.97 650.056 1569.86 635.429 1569.52C631.441 1580.41 626.408 1591.25 621.572 1601.79C612.862 1601.86 604.151 1601.83 595.441 1601.71C605.034 1576.15 620.002 1548.37 631.092 1523.02C639.17 1504.56 648.654 1484.68 657.501 1466.44C659.23 1462.88 660.445 1463.06 663.45 1462.3ZM671.392 1493.52C664.753 1507.66 653.837 1535.37 646.487 1547.34L673.964 1547.85L697.06 1547.98C693.877 1540.75 674.98 1496.3 671.392 1493.52Z" fill="#F4A01B"/>
-                        <path d="M886.951 1462.14C909.629 1459.81 928.686 1461.79 947.206 1475.32C944.556 1482.61 941.936 1487.69 937.126 1493.76C922.506 1487.25 912.53 1482.85 896.089 1483.26C888.011 1483.47 882.517 1483.94 875.964 1490.2C873.66 1492.4 871.931 1497.58 872.302 1500.76C875.005 1523.88 926.486 1518.48 942.516 1537.03C949.336 1543.55 952.936 1550.66 953.226 1560.48C954.166 1591.79 926.456 1602.56 900.483 1603.36C877.712 1603.03 860.313 1598.8 842.774 1583.89C846.397 1577.16 849.925 1571.94 854.588 1565.95C870.586 1577.47 907.061 1592.7 924.696 1572.77C940.156 1555.3 904.153 1545.54 892.622 1542.87C877.87 1539.02 852.922 1531.18 848.27 1514.29C839.832 1483.67 859.728 1465.99 886.951 1462.14ZM1070.01 1462.77C1078.31 1462.61 1087.11 1462.81 1095.44 1462.86L1095.76 1548.58C1095.79 1563.99 1096.47 1586.04 1095.32 1600.82C1086.26 1601.78 1078.94 1601.69 1069.88 1601.68C1069.08 1584.35 1069.6 1563.69 1069.6 1546.13C1069.4 1518.34 1069.54 1490.55 1070.01 1462.77Z" fill="#F4A01B"/>
-                        <path d="M890.936 277.26C904.611 276.531 914.309 276.331 927.256 281.303C936.441 284.728 944.855 289.942 952.01 296.643C959.164 303.344 964.918 311.399 968.936 320.34C986.696 360.244 967.546 399.641 928.766 416.836C929.546 430.328 929.666 446.017 929.036 459.51C928.486 471.517 921.836 478.927 911.203 483.743C864.411 496.521 872.73 445.398 872.787 417.039C827.774 402.358 812.875 341.386 841.393 304.901C854.714 287.859 869.888 280.279 890.936 277.26Z" fill="#F4A01B"/>
-                        </svg>
-                    </a>
-                </div>
-                <div>
-
-                    <h3 style="color: var(--bg-white); margin-bottom: 15px;">Контакты</h3>
-                    <p><strong>Адрес:</strong> 123 Nguyen Van Linh, Da Nang, Vietnam</p>
-                    <p><strong>Email:</strong> contact@keyhaven.asia</p>
-                    <p><strong>Телефон:</strong> +84 123 456 789</p>
-                </div>
-                <div>
-                    <h3 style="color: var(--bg-white); margin-bottom: 15px;">Юридическая информация</h3>
-                    <p><strong>Юр. лицо:</strong> KeyHaven Asia Co. Ltd.</p>
-                    <p><strong>Рег. номер:</strong> VN987654321</p>
-                    <br>
-                    <p><a href="../ru/privacy-policy/">Политика конфиденциальности</a></p>
-                    <p><a href="../ru/terms/">Пользовательское соглашение</a></p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                &copy; 2026 KeyHaven Asia. Все права защищены.
-            </div>
-        </div>
-    </footer>
-
-
-
-    <!-- JAVASCRIPT ДЛЯ БАЗОВОГО ИНТЕРАКТИВА -->
-    <script>
-        // Мобильное меню
-        const burgerBtn = document.getElementById('burger-menu');
-        const header = document.getElementById('header');
-
-        burgerBtn.addEventListener('click', () => {
-            header.classList.toggle('mobile-menu-active');
-            burgerBtn.textContent = header.classList.contains('mobile-menu-active') ? '✕' : '☰';
-        });
-
-        document.querySelectorAll('.nav-links a, .search-btn').forEach(link => {
-            link.addEventListener('click', () => {
-                header.classList.remove('mobile-menu-active');
-                burgerBtn.textContent = '☰';
-            });
-        });
-
-        // Аккордеон для FAQ
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const faqItem = button.parentElement;
-                faqItem.classList.toggle('active');
-            });
-        });
-
-        // Выпадающий список «Аренда / Покупка» в поиске
-        const dealDropdown = document.getElementById('deal-dropdown');
-        const dealToggle = document.getElementById('deal-toggle');
-        const dealLabel = document.getElementById('deal-label');
-
-        // Выпадающий переключатель языка
-        const langDropdown = document.getElementById('lang-dropdown');
-        const langToggle = document.getElementById('lang-toggle');
-
-        function closeDropdowns(except) {
-            if (except !== 'deal') {
-                dealDropdown.classList.remove('open');
-                dealToggle.setAttribute('aria-expanded', 'false');
-            }
-            if (except !== 'lang') {
-                langDropdown.classList.remove('open');
-                langToggle.setAttribute('aria-expanded', 'false');
-            }
+    if (toggleFilterBtn && advancedFilters && filterChevron) {
+      toggleFilterBtn.addEventListener('click', () => {
+        const isHidden = advancedFilters.classList.contains('hidden');
+        if (isHidden) {
+          advancedFilters.classList.remove('hidden');
+          filterChevron.style.transform = 'rotate(180deg)';
+        } else {
+          advancedFilters.classList.add('hidden');
+          filterChevron.style.transform = 'rotate(0deg)';
         }
+      });
+    }
 
-        dealToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            closeDropdowns('deal');
-            const isOpen = dealDropdown.classList.toggle('open');
-            dealToggle.setAttribute('aria-expanded', isOpen);
+    // 2. Price Range Slider Micro-interaction
+    const priceRange = document.getElementById('price-range');
+    const priceVal = document.getElementById('price-val');
+    if (priceRange && priceVal) {
+      priceRange.addEventListener('input', (e) => {
+        const val = Number(e.target.value).toLocaleString('en-US');
+        priceVal.textContent = `$300 - $${val}`;
+      });
+    }
+
+    // 3. Filter Chips Toggle Behavior
+    const chips = document.querySelectorAll('.filter-chip');
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        const isActive = chip.classList.contains('bg-primary');
+        if (isActive) {
+          chip.classList.remove('bg-primary', 'text-on-primary');
+          chip.classList.add('bg-surface-mist', 'text-on-surface');
+        } else {
+          chip.classList.remove('bg-surface-mist', 'text-on-surface');
+          chip.classList.add('bg-primary', 'text-on-primary');
+        }
+      });
+    });
+
+    // 4. Rent Carousel Controls
+    const rentCarousel = document.getElementById('rent-carousel');
+    const rentPrev = document.getElementById('rent-prev');
+    const rentNext = document.getElementById('rent-next');
+
+    if (rentCarousel && rentPrev && rentNext) {
+      const scrollStep = () => Math.max(rentCarousel.clientWidth * 0.75, 300);
+      rentPrev.addEventListener('click', () => {
+        rentCarousel.scrollBy({ left: -scrollStep(), behavior: 'smooth' });
+      });
+      rentNext.addEventListener('click', () => {
+        rentCarousel.scrollBy({ left: scrollStep(), behavior: 'smooth' });
+      });
+    }
+
+    // 5. Buy Carousel Controls
+    const buyCarousel = document.getElementById('buy-carousel');
+    const buyPrev = document.getElementById('buy-prev');
+    const buyNext = document.getElementById('buy-next');
+
+    if (buyCarousel && buyPrev && buyNext) {
+      const scrollStep = () => Math.max(buyCarousel.clientWidth * 0.75, 300);
+      buyPrev.addEventListener('click', () => {
+        buyCarousel.scrollBy({ left: -scrollStep(), behavior: 'smooth' });
+      });
+      buyNext.addEventListener('click', () => {
+        buyCarousel.scrollBy({ left: scrollStep(), behavior: 'smooth' });
+      });
+    }
+
+    // 6. FAQ Accordion Interaction
+    const faqCards = document.querySelectorAll('.faq-card');
+    faqCards.forEach((card) => {
+      const btn = card.querySelector('.faq-toggle');
+      const content = card.querySelector('.faq-content');
+      const icon = card.querySelector('.faq-icon');
+
+      if (btn && content && icon) {
+        btn.addEventListener('click', () => {
+          const isOpen = !content.classList.contains('hidden');
+          // Close all
+          document.querySelectorAll('.faq-content').forEach((c) => c.classList.add('hidden'));
+          document.querySelectorAll('.faq-icon').forEach((i) => {
+            i.textContent = 'add';
+            i.style.transform = 'rotate(0deg)';
+          });
+
+          // Toggle current
+          if (!isOpen) {
+            content.classList.remove('hidden');
+            icon.textContent = 'remove';
+            icon.style.transform = 'rotate(180deg)';
+          }
         });
+      }
+    });
 
-        dealDropdown.querySelectorAll('.search-dropdown-menu button').forEach(option => {
-            option.addEventListener('click', () => {
-                dealLabel.textContent = option.textContent;
-                dealDropdown.querySelectorAll('.search-dropdown-menu button').forEach(b => b.classList.remove('active'));
-                option.classList.add('active');
-                closeDropdowns();
-            });
-        });
-
-        langToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            closeDropdowns('lang');
-            const isOpen = langDropdown.classList.toggle('open');
-            langToggle.setAttribute('aria-expanded', isOpen);
-        });
-
-        // Закрытие выпадающих списков по клику вне их области
-        document.addEventListener('click', () => closeDropdowns());
-
-        // Горизонтальная карусель карточек (Аренда / Покупка)
-        document.querySelectorAll('.cards-wrapper').forEach(wrapper => {
-            const section = wrapper.closest('section');
-            if (!section) return;
-            const prev = section.querySelector('.cards-prev');
-            const next = section.querySelector('.cards-next');
-            if (!prev || !next) return;
-
-            const step = () => Math.max(wrapper.clientWidth * 0.8, 320);
-            prev.addEventListener('click', () => wrapper.scrollBy({ left: -step(), behavior: 'smooth' }));
-            next.addEventListener('click', () => wrapper.scrollBy({ left: step(), behavior: 'smooth' }));
-
-            const update = () => {
-                const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
-                prev.disabled = wrapper.scrollLeft <= 4;
-                next.disabled = wrapper.scrollLeft >= maxScroll - 4;
-            };
-            wrapper.addEventListener('scroll', update, { passive: true });
-            window.addEventListener('resize', update);
-            update();
-        });
-    </script>
-</body>
-</html>
+    // 7. Interactive Quiz Button Trigger
+    const quizBtn = document.getElementById('open-quiz-modal-btn');
+    if (quizBtn) {
+      quizBtn.addEventListener('click', () => {
+        const dest = document.getElementById('rent');
+        if (dest) {
+          dest.scrollIntoView({ behavior: 'smooth' });
+        }
+        if (advancedFilters && advancedFilters.classList.contains('hidden')) {
+          advancedFilters.classList.remove('hidden');
+          if (filterChevron) filterChevron.style.transform = 'rotate(180deg)';
+        }
+      });
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest shadow-[0_-1px_8px_rgba(0,0,0,0.03)]"><div class="max-w-[1600px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-space-3xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop mb-space-3xl"><div><div class="flex items-center gap-space-xs text-primary mb-space-md"><div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary"><span class="material-symbols-outlined text-[18px]">real_estate_agent</span></div><span class="font-headline-sm text-headline-sm text-primary">KeyHaven Asia</span></div><p class="font-body-base text-body-base text-on-surface-variant mb-space-lg leading-relaxed">Премиальная экосистема аренды и приобретения курортной недвижимости в Юго-Восточной Азии для экспатов, цифровых кочевников и инвесторов.</p><div class="flex items-center gap-space-sm"><span class="px-space-sm py-1 rounded-full bg-surface-container-low font-meta-sm text-meta-sm text-primary font-bold">Таиланд</span><span class="px-space-sm py-1 rounded-full bg-surface-container-low font-meta-sm text-meta-sm text-primary font-bold">Вьетнам</span><span class="px-space-sm py-1 rounded-full bg-surface-container-low font-meta-sm text-meta-sm text-primary font-bold">Бали</span></div></div><div><h4 class="font-title-card text-title-card text-on-surface mb-space-md">Навигация</h4><ul class="space-y-space-sm font-body-base text-body-base text-on-surface-variant"><li class="hover:text-primary transition-colors cursor-pointer">Виллы и апартаменты в Пхукете</li><li class="hover:text-primary transition-colors cursor-pointer">Жилье у побережья Дананга</li><li class="hover:text-primary transition-colors cursor-pointer">Уединенные виллы на Бали</li><li class="hover:text-primary transition-colors cursor-pointer">Проверка юридической чистоты</li><li class="hover:text-primary transition-colors cursor-pointer">Escrow-счета и гарантии сделок</li></ul></div><div><h4 class="font-title-card text-title-card text-on-surface mb-space-md">Контакты в Азии</h4><div class="space-y-space-sm font-body-base text-body-base text-on-surface-variant"><p class="flex items-start gap-space-sm"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">location_on</span><span>254 Vo Nguyen Giap, Son Tra District, Da Nang, Vietnam</span></p><p class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-primary text-[20px]">call</span><span>+84 (236) 388-9921</span></p><p class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-primary text-[20px]">mail</span><span>contact@keyhaven.asia</span></p><p class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-primary text-[20px]">schedule</span><span>Пн - Сб: 09:00 - 18:00 (GMT+7)</span></p></div></div><div><h4 class="font-title-card text-title-card text-on-surface mb-space-md">Юридическая информация</h4><p class="font-body-base text-body-base text-on-surface-variant mb-space-md leading-relaxed">Деятельность регулируется KeyHaven Asia Co. Ltd. Лицензированное агентство недвижимости и консалтинговый центр для иностранных граждан.</p><div class="p-space-md rounded-xl bg-surface-container-low font-meta-sm text-meta-sm text-on-surface-variant"><div class="font-body-bold text-body-bold text-on-surface mb-1">Защита релокантов</div>Все соглашения и депозиты сопровождаются двуязычными контрактами и локальной нотариальной сертификацией.</div></div></div><div class="pt-space-xl border-t border-surface-container flex flex-col md:flex-row items-center justify-between gap-space-md font-meta-sm text-meta-sm text-on-surface-variant"><p>© 2026 KeyHaven Asia Co. Ltd. Все права защищены.</p><div class="flex items-center gap-space-lg"><span class="hover:text-primary transition-colors cursor-pointer">Политика конфиденциальности</span><span class="hover:text-primary transition-colors cursor-pointer">Условия обслуживания</span><span class="hover:text-primary transition-colors cursor-pointer">Безопасность сделок</span></div></div></div></footer></body></html>
